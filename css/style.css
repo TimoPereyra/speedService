@@ -1,0 +1,114 @@
+/*
+COLORES
+principal: #fa0050
+
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.navbar-collapse{
+    justify-content: flex-end;
+}
+.navbar-brand{
+    color: #fa0050!important;
+    font-weight: bold;
+}
+.nav-link{
+    color: #000!important;
+}
+.nav-link:hover{
+    color: #fa0050!important;
+}
+.active {
+    color: #fa0050!important;
+    font-weight: bold;
+}
+
+/* SECCION BIENVENIDA */
+.seccion-bienvenida{
+    min-height: 100vh;
+    background: url(../img/fondo-bienvenida.jpg) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.seccion-bienvenida .contenedor {
+    text-align: center;
+    background-color: #000000c7;
+    padding: 2rem;
+    max-width: 800px;
+}
+.seccion-bienvenida .contenedor h1{
+    color: #fff;
+}
+.seccion-bienvenida .contenedor p{
+    color: #fff;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.seccion-bienvenida .contenedor a{
+    text-decoration: none;
+    color: #fff;
+    background-color: #fa0050;
+    padding: .5rem .8rem;
+    display: block;
+    max-width: 180px;
+    margin: auto;
+    transition: all .5s ease;
+}
+.seccion-bienvenida .contenedor a:hover{
+    transform:scale(1.1);
+}
+
+
+/* SECCION INFO SERVICIOS */
+.info-servicios{
+    background-color: #000;
+}
+.info-servicios .info-servicio{
+    color:#fff;
+}
+.info-servicios .icono {
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    margin: auto;
+    border-radius: 5px;
+    align-items: center;
+    background-color: #fa005075;
+    margin-bottom: 1rem;
+}
+
+.info-servicios .icono i{
+    font-size: 28px;
+    color: #fa0050;
+}
+
+
+/* PIE DE PAGINA */
+
+footer{
+    background-color: #222020;
+    color: #fff;
+}
+footer h4{
+    font-size: 18px;
+}
+footer p{
+    font-size: 12px;
+}
+footer .row div{
+    text-align: center;
+}
+footer .copyright{
+    display: flex;
+    align-items: center;
+}
