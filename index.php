@@ -5,7 +5,7 @@ require_once('includes/header.php');
   <section class="seccion-bienvenida">
     <div class="contenedor">
       <h1>SpeedService</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus cum nihil architecto quos obcaecati minus.</p>
+      <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora.</i></p>
       <a href="#">Nuestros Servicios</a>
     </div>
   </section>
@@ -18,33 +18,33 @@ require_once('includes/header.php');
 
         <div class="col-md-4 mb-3">
           <div class="card">
-            <img src="img/flete.jpg" class="card-img-top" alt="...">
+            <img src="img/fondo1.jpg" class="card-img-top imagen-servicios" alt="remis">
             <div class="card-body">
-              <h5 class="card-title">Flete</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">+ Info</a>
+              <h5 class="card-title">REMIS</h5>
+              <p class="card-text"><i>Si querés moverte, nosotros te llevamos.</i></p>
+              <a href="#" class="btn d-grid gap-2">Ir</a>
             </div>
           </div>
         </div>
 
         <div class="col-md-4 mb-3">
           <div class="card">
-            <img src="img/flete.jpg" class="card-img-top" alt="...">
+            <img src="img/flete_movimiento.jpg" class="card-img-top imagen-servicios" alt="flete">
             <div class="card-body">
-              <h5 class="card-title">Remis</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">+ Info</a>
+              <h5 class="card-title">FLETE</h5>
+              <p class="card-text"><i>Dejá tu carga en buenas manos.</i></p>
+              <a href="#" class="btn d-grid gap-2">Ir</a>
             </div>
           </div>
         </div>
 
         <div class="col-md-4 mb-3">
           <div class="card">
-            <img src="img/flete.jpg" class="card-img-top" alt="...">
+            <img src="img/MOTO_MOVIMIENTO.jpg" class="card-img-top imagen-servicios" alt="mandado">
             <div class="card-body">
-              <h5 class="card-title">Mandado</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">+ Info</a>
+              <h5 class="card-title">MANDADO</h5>
+              <p class="card-text"><i>Ahorrá tiempo, nuestro destino es tu confianza.</i></p>
+              <a href="#" class="btn d-grid gap-2">Ir</a>
             </div>
           </div>
         </div>
@@ -55,15 +55,15 @@ require_once('includes/header.php');
 
   <section class="info-servicios py-4 mt-3">
     <div class="container">
-      <h2></h2>
+
       <div class="row">
 
         <div class="col-md-4 text-center info-servicio">
           <div class="icono">
             <i class="fa-solid fa-id-card"></i>
           </div>
-          <h3 class="encabezado-info">Lorem ipsum dolor sit amet.</h3>
-          <p class="descripcion-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ea accusantium placeat beatae quae! Quidem esse explicabo quam itaque modi.</p>
+          <h5 class="encabezado-info">Seguridad</h5>
+          <p class="descripcion-info">Nuestros choferes están registrados en bases de datos y cuentan con toda la documentación respaldatoria para circular.</p>
         </div>
 
         <div class="col-md-4 text-center info-servicio">
@@ -71,17 +71,17 @@ require_once('includes/header.php');
             <i class="fa-solid fa-clock-rotate-left"></i>
           </div>
           
-          <h3 class="encabezado-info">Lorem ipsum dolor sit amet.</h3>
-          <p class="descripcion-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ea accusantium placeat beatae quae! Quidem esse explicabo quam itaque modi.</p>
+          <h5 class="encabezado-info">24hs</h5>
+          <p class="descripcion-info">Solicita un servicio en cualquier momento del día y cualquier día del año.</p>
         </div>
 
         <div class="col-md-4 text-center info-servicio">
           <div class="icono">
-            <i class="fa-solid fa-signal"></i>
+            <i class="fa fa-money"></i>
           </div>
           
-          <h3 class="encabezado-info">Lorem ipsum dolor sit amet.</h3>
-          <p class="descripcion-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos ea accusantium placeat beatae quae! Quidem esse explicabo quam itaque modi.</p>
+          <h5 class="encabezado-info">Transparencia</h5>
+          <p class="descripcion-info">Observa el detalle de tu pedido. Compara viajes. <br>No te dejes engañar.</p>
         </div>
 
       </div>
