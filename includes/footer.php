@@ -1,24 +1,22 @@
-<footer class="py-2">
+<footer class="py-3">
     <div class="container">
       <div class="row">
 
         <div class="col-md-4">
-        <h4>Diseño y desarrollo por:</h4>
-          <p class="mb-1"> Agustin Rodriguez <a href="#"><i class="fa-brands fa-whatsapp"></i></a></p>
-          <p class="mb-0"> Martina Rodriguez <a href="#"><i class="fa-brands fa-whatsapp"></i></a></p>
+          <h4>Diseño y desarrollo por</h4>
+            <p class="mb-1"> Marianela Novelli <a href="#"><i class="fa-brands fa-whatsapp icono-footer"></i></a></p>
+            <p class="mb-0"> Timoteo Pereyra <a href="#"><i class="fa-brands fa-whatsapp icono-footer"></i></a></p>
         </div>
 
         <div class="col-md-4 copyright">
-          <p class="mb-0">
-          Copyright © 2022. Todos los derechos reservados.
-          </p>
+          <p class="mb-0">Copyright © 2022. Todos los derechos reservados.</p>
         </div>
 
         <div class="col-md-4">
-          <h4>Info contacto</h4>
+          <h4>Contacto</h4>
             <ul class="m-0 p-0">
-              <li><i class="fa-solid fa-phone"></i> +23565 565656</li>
-              <li><i class="fa-solid fa-envelope"></i> info@speedservice.com.ar</li>
+              <li><i class="fa-solid fa-phone icono-footer"></i> 2346 433698 </li>
+              <li><i class="fa-solid fa-envelope icono-footer"></i> contacto@speedservice.com.ar </li>
             </ul>
         </div>
 

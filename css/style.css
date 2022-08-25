@@ -1,7 +1,6 @@
 /*
 COLORES
 principal: #fa0050
-
 */
 
 *{
@@ -13,9 +12,13 @@ principal: #fa0050
 .navbar-collapse{
     justify-content: flex-end;
 }
+.navbar-collapse a{
+    font-size: 1rem;
+}
 .navbar-brand{
     color: #fa0050!important;
     font-weight: bold;
+    font-size: 1.3rem;
 }
 .nav-link{
     color: #000!important;
@@ -28,10 +31,29 @@ principal: #fa0050
     font-weight: bold;
 }
 
+.img-logo{
+    height: 3rem;
+    width: auto;
+    padding-right: .7rem;
+    margin-right: .7rem;
+}
+header .cta{
+    border-radius: 20px;
+    padding: 0.5rem 0.8rem;
+    background-color: #fa0050;
+    color: #fff!important;
+    margin-left: 2rem;
+    font-size: 14px;    
+}
+header .cta:hover{
+    opacity: .7;
+    color: #fff!important;
+}
+
 /* SECCION BIENVENIDA */
 .seccion-bienvenida{
     min-height: 100vh;
-    background: url(../img/fondo-bienvenida.jpg) no-repeat center center;
+    background: url(../img/fondo2.jpg) no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -43,9 +65,12 @@ principal: #fa0050
     background-color: #000000c7;
     padding: 2rem;
     max-width: 800px;
+    border-radius: 10rem;
 }
 .seccion-bienvenida .contenedor h1{
     color: #fff;
+    font-size: 2.4rem;
+    font-weight: bold;
 }
 .seccion-bienvenida .contenedor p{
     color: #fff;
@@ -62,18 +87,35 @@ principal: #fa0050
     max-width: 180px;
     margin: auto;
     transition: all .5s ease;
+    border-radius: 20px;
 }
 .seccion-bienvenida .contenedor a:hover{
     transform:scale(1.1);
 }
 
+/* SECCION SERVICIOS */
+.seccion-servicios h2{
+    color: #fa0050;
+    font-size: 2rem;
+}
+
+.seccion-servicios .btn{
+    background-color: #fa0050;
+    color:#fff;
+}
+
+.seccion-servicios .imagen-servicios{
+    width: auto;
+    height: 13rem;
+    object-fit: cover;
+}
 
 /* SECCION INFO SERVICIOS */
 .info-servicios{
-    background-color: #000;
+    background-color: #fa004f1e;
 }
 .info-servicios .info-servicio{
-    color:#fff;
+    color: black;
 }
 .info-servicios .icono {
     justify-content: center;
@@ -83,32 +125,67 @@ principal: #fa0050
     margin: auto;
     border-radius: 5px;
     align-items: center;
-    background-color: #fa005075;
-    margin-bottom: 1rem;
 }
 
 .info-servicios .icono i{
     font-size: 28px;
-    color: #fa0050;
+    color: #fa004fc4;
 }
-
+.card .card-text {
+    min-height: 50px;
+}
 
 /* PIE DE PAGINA */
 
 footer{
-    background-color: #222020;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
     color: #fff;
 }
 footer h4{
     font-size: 18px;
 }
-footer p{
-    font-size: 12px;
+footer p, li{
+    font-size: 13px;
 }
 footer .row div{
     text-align: center;
 }
 footer .copyright{
-    display: flex;
+    display: grid;
     align-items: center;
+}
+
+.icono-footer{
+    color: rgb(4, 136, 92);
+}
+
+/* PAGINA REGISTRAR SERVICIO */
+
+.registrar-servicio{
+    padding-top: 6rem!important;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/fondo-bienvenida.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.registrar-servicio .formulario .row{
+    align-items: center;
+    background-color: #fa0050ad;
+    color:#fff;
+    padding: 2rem;
+}
+/* PAGINA SERVICIOS */
+.pagina-servicios{
+    padding-top: 6rem!important;
+    background-color: #f2f2f2;
+}
+.pagina-servicios .columna-servicios{
+    background-color: #fff;
+    padding: 1rem;
+}
+.pagina-servicios .columna-servicios .servicio-1, .pagina-servicios .columna-servicios .servicio-2{
+    border-right: 1px solid;
 }
