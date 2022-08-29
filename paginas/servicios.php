@@ -20,7 +20,7 @@ require_once('../includes/header.php');
 
                         <div class="col-md-4 servicio-1">
                             <article class="servicio">
-                                <a href="#"><img class="logo-servicio img-fluid" src="../img/servicio_remis.jpg" alt="imagen servicio"></a>
+                                <a href="#"><img class="logo-servicio img-fluid" src="../img/servicio_flete.jpg" alt="imagen servicio"></a>
                                    <a href="3"><h3 class="titulo-servicio">Remises Noroeste</h3></a>
                                     <p class="descripcion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis illum ab excepturi nobis possimus? Est facere ipsum illo maxime magnam!</p>
                                     <p class="horario-servicio">Horario: 08:00 a 00:00 hs.</p>
@@ -38,7 +38,7 @@ require_once('../includes/header.php');
                         </div>
                         <div class="col-md-4">
                         <article class="servicio">
-                                <a href="#"><img class="logo-servicio img-fluid" src="../img/servicio_remis.jpg" alt="imagen servicio" ></a>
+                                <a href="#"><img class="logo-servicio img-fluid" src="../img/servicio_mandado.jpg" alt="imagen servicio" ></a>
                                    <a href="3"><h3 class="titulo-servicio">Remises Noroeste</h3></a>
                                     <p class="descripcion">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis illum ab excepturi nobis possimus? Est facere ipsum illo maxime magnam!</p>
                                     <p class="horario-servicio">Horario: 08:00 a 00:00 hs.</p>
