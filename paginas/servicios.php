@@ -2,6 +2,7 @@
 $pagina = 'servicios';
 require_once('../includes/config.php');
 require_once('../includes/header.php');
+
 ?>
 
 <main class="pagina-servicios py-5">
