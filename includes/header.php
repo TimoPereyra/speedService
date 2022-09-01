@@ -10,7 +10,7 @@
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo RUTARAIZ; ?>/css/style.css">
-    <link rel="shortcut icon" href="img/logo5.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo RUTARAIZ; ?>/img/logo5.jpg" type="image/x-icon">
     
     <title>SpeedService</title>
 </head>
@@ -22,7 +22,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
             <div class="container">
-              <img class="img-logo" src="img/logo5.jpg" alt="">
+              <img class="img-logo" src="<?php echo RUTARAIZ; ?>/img/logo5.jpg" alt="">
               <a class="navbar-brand" href="<?php echo RUTARAIZ; ?>">SpeedService</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link cta" href="<?php echo RUTARAIZ.'/paginas'.'/registrar-servicio.php'; ?>">Registra tu servicio</a>
+                    <a class="nav-link cta" href="<?php echo RUTARAIZ.'/paginas'.'/registrar-servicio.php'; ?>">Registrá tu servicio</a>
                   </li>
 
                 </ul>

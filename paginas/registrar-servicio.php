@@ -11,40 +11,40 @@ require_once('../includes/header.php');
             <div class="row">
 
                 <div class="col-md-5">
-                    <h1>Súmate a la app de delivery online más grande de América Latina</h1>
-                    <p>Aplica únicamente para socios comerciales que completen el proceso de registro exitosamente</p>
-                    <p>Aplica únicamente para socios comerciales que completen el proceso de registro exitosamente</p>
+                    <h1><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h1>
+                    <p><br>Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica únicamente para aquellos que completen el proceso de registro exitosamente.</p>
                 </div>
 
                 <div class="offset-md-1 col-md-6">
 
                 <form action="registrar-servicio.php" method="POST">
+
                     <div class="mb-3">
-                        <label for="nombreProveedor">Nombre Completo</label>
+                        <label for="nombreProveedor">Nombre y Apellido:</label>
                         <input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" required>
                     </div>
                     <div class="mb-3">
-                        <label for="correoProveedor">Correo electronico</label>
+                        <label for="correoProveedor">Correo electrónico:</label>
                         <input type="email" class="form-control" id="correoProveedor" name="correoProveedor" required>
                     </div>
                     <div class="mb-3">
-                        <label for="telefonoProveedor">Teléfono</label>
+                        <label for="telefonoProveedor">Teléfono:</label>
                         <input type="text" class="form-control" id="telefonoProveedor" name="telefonoProveedor" required>
                     </div>
                     <div class="mb-3">
-                    <label for="edadProveedor">Edad</label>
+                    <label for="edadProveedor">Edad:</label>
                         <input type="number" class="form-control" id="edadProveedor" name="nombreProveedor" required>
                     </div>
                     <div class="mb-3">
                         <label for="servicioProveedor">Tipo de servicio:</label>
                         <select name="tipoServicio" id="servicioProveedor" class="form-select">
-                            <option value="1">Flete</option>
-                            <option value="2">Remis</option>
+                            <option value="1">Remis</option>
+                            <option value="2">Flete</option>
                             <option value="3">Mandado</option>
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Procesar información</button>
+                    <button type="submit" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Enviar solicitud</button>
 
                 </form>
 
