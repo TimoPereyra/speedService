@@ -3,6 +3,7 @@ $pagina = 'inicio';
 require_once('includes/config.php');
 require_once('includes/conexion.php');
 
+/* LISTAR CATEGORIAS  */
 $stmt = $conexion->prepare("SELECT * FROM categorias");
 $stmt->execute();
 
@@ -16,7 +17,10 @@ require_once('includes/header.php');
     <div class="contenedor">
       <h1>SpeedService</h1>
       <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora. </i></p>
-      <a href="#">Nuestros Servicios</a>
+      <div class="d-flex justify-content-center align-items-center">
+        <a href="#" class="me-4">Registrarse</a>
+        <a href="#">Registrá tu servicio</a>
+      </div>
     </div>
   </section>
 

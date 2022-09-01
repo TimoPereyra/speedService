@@ -47,9 +47,14 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link cta" href="<?php echo RUTARAIZ.'/paginas'.'/registrar-servicio.php'; ?>">Registrá tu servicio</a>
+                    <a class="nav-link" href="#">Ingresar</a>
                   </li>
 
+                  <!-- 
+                  <li class="nav-item">
+                    <a class="nav-link cta" href="">Registrá tu servicio</a>
+                  </li>
+-->
                 </ul>
               </div>
             </div>

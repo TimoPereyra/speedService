@@ -85,7 +85,6 @@ header .cta:hover{
     padding: .5rem .8rem;
     display: block;
     max-width: 180px;
-    margin: auto;
     transition: all .5s ease;
     border-radius: 20px;
 }
