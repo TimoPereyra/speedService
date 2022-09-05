@@ -9,6 +9,9 @@ principal: #fa0050
     text-decoration: none;
     list-style: none;
 }
+.msj-error{
+    display: none;
+}
 .navbar-collapse{
     justify-content: flex-end;
 }
@@ -167,7 +170,7 @@ footer .copyright{
 
 /* PAGINA REGISTRAR SERVICIO */
 .registrar-servicio{
-    padding-top: 6rem!important;
+    padding-top: 4.5rem!important;
     min-height: 80vh;
     display: flex;
     justify-content: center;
@@ -176,7 +179,7 @@ footer .copyright{
     background-size: cover;
 }
 
-.registrar-servicio .formulario .row{
+.registrar-servicio .formulario .row:first-child{
     align-items: center;
     background-color: rgba(97, 90, 90, 0.651);
     color:#fff;
@@ -200,3 +203,20 @@ footer .copyright{
     border-right: 1px solid;
 }
 
+
+/* PAGINA INGRESAR */
+.pagina-ingresar{
+    padding-top: 4.5rem!important;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/fondo_registro_servicio.jpg) no-repeat center center;
+    background-size: cover;
+}
+.pagina-ingresar .seccion-login .row:first-child{
+    align-items: center;
+    background-color: rgba(97, 90, 90, 0.651);
+    color:#fff;
+    padding: 2rem;
+}

@@ -47,7 +47,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Ingresar</a>
+                    <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/ingresar.php">Ingresar</a>
                   </li>
 
                   <!-- 

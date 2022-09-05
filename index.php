@@ -18,8 +18,8 @@ require_once('includes/header.php');
       <h1>SpeedService</h1>
       <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora. </i></p>
       <div class="d-flex justify-content-center align-items-center">
-        <a href="#" class="me-4">Registrarse</a>
-        <a href="#">Registrá tu servicio</a>
+        <a href="paginas/registro.php" class="me-4">Registrarse</a>
+        <a href="paginas/registro.php">Registrá tu servicio</a>
       </div>
     </div>
   </section>
