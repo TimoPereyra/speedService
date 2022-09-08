@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+if(isset($_SESSION['idUsuario'])){
+    header('Location:../index.php');
+}
 
 $pagina = 'registro';
 require_once('../includes/config.php');

@@ -12,6 +12,13 @@ principal: #fa0050
 .msj-error{
     display: none;
 }
+.img-avatar{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}
+
+/* ESTILOS NAV */
 .navbar-collapse{
     justify-content: flex-end;
 }
@@ -219,4 +226,21 @@ footer .copyright{
     background-color: rgba(97, 90, 90, 0.651);
     color:#fff;
     padding: 2rem;
+}
+
+/* PANEL ADM */
+
+.panel-bienvenida{
+    padding-top: 4.5rem!important;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(../img/fondo_registro_servicio.jpg) no-repeat center center;
+    background-size: cover;
+}
+.alta-categorias{
+    padding-top: 5rem;
+    min-height: 60vh;
 }

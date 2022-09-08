@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if(isset($_SESSION['idUsuario'])){
+    header('Location:../index.php');
+}
+
+
 $pagina = 'registro';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
@@ -19,11 +26,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         }else{
             $validClave = password_verify($passCliente,$usuario['password']);    
             if($validClave == 1){
-
                 /* INICIAMOS LAS VARIABLES DE SESSION */
+                $_SESSION['correo'] = $usuario['correo'];
+                $_SESSION['idUsuario'] = $usuario['idUsuario'];
+                $_SESSION['nombre'] = $usuario['nombreCompleto'];
+                $_SESSION['imgUsuario'] = $usuario['imgUsuario'];
+                $_SESSION['idRol'] = $usuario['idRol'];
 
-                header("Location: index.php");
-
+                if($_SESSION['idRol'] == 3){
+                    header("Location:../adm/panel-adm.php");
+                }else{
+                    header("Location:../index.php");
+                }
+                
             }else{
                 $notificacion = "Error: La contraseña ingresada es incorrecta.";
             }
@@ -35,6 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
 <main class="pagina-ingresar">
+
     <section class="seccion-login">
         <div class="container">
             <div class="row">
@@ -53,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         </div>
                         <div class="mb-3">
                             <label for="passCliente">Contraseña:</label>
-                            <input type="text" class="form-control" id="passCliente" name="passCliente">
+                            <input type="password" class="form-control" id="passCliente" name="passCliente">
                             <p class="text-white bg-danger msj-error">Error: El nombre debe tener al menos 6 caracteres.</p>
                         </div>
                         <?php 
@@ -68,6 +84,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 </div>
 
     </section>
+
 </main>
 
 <?php
