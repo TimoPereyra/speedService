@@ -82,6 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
             if($resultado){
+                
                 $notificacionExito = "Éxito: se ha registrado correctamente.";
             }
         }

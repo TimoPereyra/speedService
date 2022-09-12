@@ -8,12 +8,13 @@ if(!isset($_SESSION['idUsuario']) || $_SESSION['idRol'] != 3){
 $pagina = 'listado-categorias';
 require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
-require_once('../../includes/header.php');
 
-$stmt = $conexion->prepare("SELECT * FROM categorias ORDER BY categoria");
+
+$stmt = $conexion->prepare("SELECT * FROM categorias WHERE bajaCategoria = 0 ORDER BY categoria");
 $stmt->execute();
 $categorias = $stmt->fetchAll();
 
+require_once('../../includes/header.php');
 ?>
 
 <section class="alta-categorias">
@@ -36,12 +37,12 @@ $categorias = $stmt->fetchAll();
                         foreach ($categorias as $fila) {
                             echo '
                                 <tr>
-                                    <td><img src="'.RUTARAIZ.'/img/categorias/'.$fila['imgCategoria'].'" alt="imágen de la categoría" style="max-width:100px"></td>
-                                    <td>'.$fila['categoria'].'</td>
-                                    <td>'.$fila['descripcionCategoria'].'</td>
-                                    <td>
-                                        <a href="modificar.php?id='.$fila['idCategoria'].'">Modificar</a>
-                                        <a href="eliminar.php?id='.$fila['idCategoria'].'">Eliminar</a>
+                                    <td class="align-middle"><img src="'.RUTARAIZ.'/img/categorias/'.$fila['imgCategoria'].'" alt="imágen de la categoría" style="max-width:100px"></td>
+                                    <td class="align-middle">'.$fila['categoria'].'</td>
+                                    <td class="align-middle">'.$fila['descripcionCategoria'].'</td>
+                                    <td class="align-middle">
+                                        <a href="modificar.php?id='.$fila['idCategoria'].'" class="icono-modificar"><i class="fa-solid fa-gear"></i></a>
+                                        <a href="eliminar.php?id='.$fila['idCategoria'].'"  class="icono-eliminar"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
                             ';

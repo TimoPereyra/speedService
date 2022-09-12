@@ -58,6 +58,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <textarea class="form-control" name="descripcion" id="descripcion" rows="5"></textarea>
                 </div>
 
+                <?php 
+                        if(isset($notificacion)){
+                            echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
+                        }              
+                ?>
+
                 <button class="btn btn-success" type="submit">Crear</button>
             </form>
         </div>

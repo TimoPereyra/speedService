@@ -6,7 +6,7 @@ require_once('includes/config.php');
 require_once('includes/conexion.php');
 
 /* LISTAR CATEGORIAS  */
-$stmt = $conexion->prepare("SELECT * FROM categorias");
+$stmt = $conexion->prepare("SELECT * FROM categorias WHERE bajaCategoria = 0");
 $stmt->execute();
 
 $categorias = $stmt->fetchAll();
@@ -14,6 +14,8 @@ $categorias = $stmt->fetchAll();
 require_once('includes/header.php');
 
 ?>
+
+
 
   <section class="seccion-bienvenida">
     <div class="contenedor">
