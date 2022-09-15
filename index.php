@@ -1,9 +1,12 @@
 <?php
+session_start();
+
 $pagina = 'inicio';
 require_once('includes/config.php');
 require_once('includes/conexion.php');
 
-$stmt = $conexion->prepare("SELECT * FROM categorias");
+/* LISTAR CATEGORIAS */ 
+$stmt = $conexion->prepare("SELECT * FROM categorias WHERE bajaCategoria = 0");
 $stmt->execute();
 
 $categorias = $stmt->fetchAll();
@@ -16,7 +19,10 @@ require_once('includes/header.php');
     <div class="contenedor">
       <h1>SpeedService</h1>
       <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora. </i></p>
-      <a href="#">Nuestros Servicios</a>
+      <div class="d-flex justify-content-center align-items-center">
+        <a href="paginas/registro.php" class="me-4">Registrarse</a>
+        <a href="paginas/registro.php">Registrá tu servicio</a>
+      </div>
     </div>
   </section>
 
@@ -35,7 +41,7 @@ require_once('includes/header.php');
                 <div class="card-body">
                   <h5 class="card-title">'.ucfirst($fila['categoria']).'</h5>
                   <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>
-                  <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicio">Ir</a>
+                  <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
                 </div>
               </div>
             </div>

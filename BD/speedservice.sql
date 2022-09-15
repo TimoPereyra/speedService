@@ -157,16 +157,17 @@ CREATE TABLE `usuarios` (
   `imgUsuario` varchar(250) NOT NULL,
   `nombreCompleto` varchar(250) NOT NULL,
   `correo` varchar(250) NOT NULL,
+  `password` varchar(400) NOT NULL,
   `telefono` varchar(100) NOT NULL,
   `dni` varchar(8) NOT NULL,
   `direccion` varchar(250) NOT NULL,
   `fechaNacimiento` date NOT NULL,
-  `fechaDeAlta` datetime NOT NULL,
+  `fechaDeAlta` datetime NOT NULL DEFAULT current_timestamp(),
   `idRol` int(11) NOT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `FK_rol` (`idRol`),
   CONSTRAINT `relacion_usuario_rol` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +176,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'flan.jpg','Manuel Diaz','manu@gmail.com','','4564564654','32659879','asdasdasd 123','1990-05-02','2022-09-01 20:19:36',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-29 12:53:42
+-- Dump completed on 2022-09-01 20:30:29
