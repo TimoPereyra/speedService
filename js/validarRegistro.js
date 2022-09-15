@@ -36,3 +36,43 @@ formularioRegistro.addEventListener('submit',(e) => {
     
 
 });
+
+/***************************************/
+/******** VALIDACION DEL CORREO *******/
+
+function validacionCorreo(){
+    var codigo = rand_code('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',6),
+    correo = document.getElementById('correoProveedor').value;
+
+    if(correo == ''){
+        alert('Tiene que completar el correo que va a ser enviado el codigo.');
+        return false;
+    }
+    console.log(codigo+' Y CORREO '+correo);
+    var param = {'correo' : correo,
+                'codigo' : codigo}
+    console.log(param);
+    $.ajax({
+        url: '../ajax/ajax_enviar_codigo.php',
+        type: 'POST',
+        data: param,
+        beforeSend: function (){
+        },
+        success: function(data){
+            console.log(data);
+            alert(data);
+        },
+        error: function(){
+        }
+    })
+}
+
+  // FUNCION PARA ARMAR UN CODIGO RANDOM  
+function rand_code(chars, lon){
+    code = "";
+    for (x=0; x < lon; x++){
+    rand = Math.floor(Math.random()*chars.length);
+    code += chars.substr(rand, 1);
+    }
+    return code;
+}

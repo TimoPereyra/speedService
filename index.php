@@ -5,7 +5,7 @@ $pagina = 'inicio';
 require_once('includes/config.php');
 require_once('includes/conexion.php');
 
-/* LISTAR CATEGORIAS  */
+/* LISTAR CATEGORIAS */ 
 $stmt = $conexion->prepare("SELECT * FROM categorias WHERE bajaCategoria = 0");
 $stmt->execute();
 
@@ -43,7 +43,7 @@ require_once('includes/header.php');
                 <div class="card-body">
                   <h5 class="card-title">'.ucfirst($fila['categoria']).'</h5>
                   <p class="card-text"><i>'.$fila['descripcionCategoria'].'</i></p>
-                  <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicio">Ir</a>
+                  <a href="paginas/servicios.php?idCategoria='.$fila['idCategoria'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicio">Ver más...</a>
                 </div>
               </div>
             </div>

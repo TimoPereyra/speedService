@@ -15,8 +15,8 @@
         <div class="col-md-4">
           <h4>Contacto</h4>
             <ul class="m-0 p-0">
-              <li><i class="fa-solid fa-phone icono-footer"></i> 2346 433698 </li>
-              <li><i class="fa-solid fa-envelope icono-footer"></i> contacto@speedservice.com.ar </li>
+              <li><i class="fa-solid fa-phone icono-footer"></i> 2346-433698 </li>
+              <li><i class="fa-solid fa-envelope icono-footer"></i><a class="text-decoration-none text-light" href="mailto:speedservicetym@gmail.com"> speedservicetym@gmail.com </li></a>
             </ul>
         </div>
 

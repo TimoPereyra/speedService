@@ -47,9 +47,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $maxEdad = 95;
     $minEdad = 16;
     $edad = obtener_edad_segun_fecha($fechaNacimiento);
+    $codigo = $_POST['codigo'];
         
-
-    if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
+     if($codigo == $_SESSION['codigo']){
+         unset($_SESSION['codigo']);
+         $notificacion = "CODIGO CORRECTO!!";
+        //$notificacion = "Error: El codigo de validacion es incorrecto.";
+     }else if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
         $notificacion = "Error: no puede dejar campos vacios.";
     }else if(strlen($nombreCompleto) <= 5){
         $notificacion = "Error: El nombre debe contener almenos 6 caracteres.";
@@ -95,19 +99,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <main class="registrar-servicio">
 
     <seccion class="formulario py-1">
+       
         <div class="container">
             <div class="row">
-
+            
                 <div class="col-4">
-                    <h1 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h1>
+                    <h2 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h2>
                     <p class="text-center">Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica únicamente para aquellos que completen el proceso de registro exitosamente.</p>
                 </div>
 
                 <div class="col-8">
+            <?php 
+            if(isset($notificacion)){
+                echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
+            }else if(isset($notificacionExito)){
+                echo '<p class="bg-success text-white text-center">'.$notificacionExito.'</p>';
+            }                    
+            ?>
 
                 <form action="registro.php" method="POST" enctype="multipart/form-data" id="formRegistro" class="row">
 
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 col-md-6 arregloForm">
                         <div class="mb-3">
                             <label for="nombreProveedor">Nombre y Apellido:</label>
                             <input type="text" class="form-control" id="nombreProveedor" name="nombreCliente" required>
@@ -123,31 +135,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="email" class="form-control" id="correoProveedor" name="correoCliente" required>
                         </div>
                         <div class="mb-3">
-                            <label for="telefonoProveedor">Teléfono: (Ej. 2346-xxxxxx):</label>
+                            <label for="telefonoProveedor">Teléfono (Ej. 2346-xxxxxx):</label>
                             <input type="text" class="form-control" id="telefonoProveedor" name="telefonoCliente" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dniCliente">DNI (sin puntos):</label>
-                            <input type="number" class="form-control" id="dniCliente" name="dniCliente" required>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <div class="mb-3">
-                            <label for="telefonoProveedor">Dirección:</label>
-                            <input type="text" class="form-control" id="telefonoProveedor" name="direccionCliente" required>
-                        </div>
-                        <div class="mb-3">
-                        <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
-                        </div>
-                        <div class="mb-3">
-                        <label for="pass">Contraseña:</label>
-                            <input type="password" class="form-control" id="pass" name="pass" required>
-                        </div>
-                        <div class="mb-3">
-                        <label for="passConfirm">Repita su contraseña:</label>
-                            <input type="password" class="form-control" id="passConfirm" name="passConfirm" required>
                         </div>
                         <div class="mb-3">
                             <label for="servicioProveedor">Tipo de servicio:</label>
@@ -161,16 +150,37 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         </div>
                     </div>
 
-                    
-                    
-                    <?php 
-                        if(isset($notificacion)){
-                            echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
-                        }else if(isset($notificacionExito)){
-                            echo '<p class="bg-success text-white text-center">'.$notificacionExito.'</p>';
-                        }                    
-                    ?>
-                    <button type="submit" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Enviar solicitud</button>
+                    <div class="col-12 col-md-6">
+                        <div class="mb-3">
+                            <label for="telefonoProveedor">Dirección:</label>
+                            <input type="text" class="form-control" id="telefonoProveedor" name="direccionCliente" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dniCliente">DNI (sin puntos):</label>
+                            <input type="number" class="form-control" id="dniCliente" name="dniCliente" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pass">Contraseña:</label>
+                            <input type="password" class="form-control" id="pass" name="pass" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passConfirm">Repita su contraseña:</label>
+                            <input type="password" class="form-control" id="passConfirm" name="passConfirm" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="codigo">Código:</label>
+                            <input type="text" class="form-control" id="codigo" name="codigo" required>
+                        </div>
+                        
+                    </div>
+
+                                       
+                    <button type="submit" class="btn d-grid gap-2 col-5 mx-auto boton-servicio">Enviar solicitud</button>
+                    <button type="button" onclick="validacionCorreo()" class="btn d-grid gap-2 col-5 mx-auto boton-servicio">Validar correo</button>
 
                 </form>
 
@@ -188,7 +198,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
 </script>
-<script src="../js/validarRegistro.js"></script>
+<script src="../js/validarRegistro.js?<?php echo time();?>"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <?php
   require_once('../includes/footer.php');
 ?>

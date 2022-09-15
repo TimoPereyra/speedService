@@ -204,19 +204,23 @@ footer .copyright{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../img/fondo_registro_servicio.jpg) no-repeat center center;
+    background: url(../img/registro1.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .registrar-servicio .formulario .row:first-child{
     align-items: center;
-    background-color: rgba(97, 90, 90, 0.651);
-    color:#fff;
+    background-color: rgba(97, 90, 90, 0.425);
+    color:#f2f2f2;
     padding: 2rem;
+    border-radius: 5px;
 }
 
 .registrar-servicio .formulario p{
     text-align: justify;
+}
+.arregloForm{
+    margin-top: -79px;
 }
 
 /* PAGINA SERVICIOS */
@@ -240,14 +244,15 @@ footer .copyright{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../img/fondo_registro_servicio.jpg) no-repeat center center;
+    background: url(../img/registro2.jpg) no-repeat center center;
     background-size: cover;
 }
 .pagina-ingresar .seccion-login .row:first-child{
     align-items: center;
-    background-color: rgba(97, 90, 90, 0.651);
-    color:#fff;
+    background-color: rgba(97, 90, 90, 0.425);
+    color: #f2f2f2;
     padding: 2rem;
+    border-radius: 5px;
 }
 
 /* PANEL ADM */

@@ -24,23 +24,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(empty($usuario)){
            $notificacion = "Error: el correo ingresado no se encuentra registrado";
         }else{
-            $validClave = password_verify($passCliente,$usuario['password']);    
-            if($validClave == 1){
-                /* INICIAMOS LAS VARIABLES DE SESSION */
-                $_SESSION['correo'] = $usuario['correo'];
-                $_SESSION['idUsuario'] = $usuario['idUsuario'];
-                $_SESSION['nombre'] = $usuario['nombreCompleto'];
-                $_SESSION['imgUsuario'] = $usuario['imgUsuario'];
-                $_SESSION['idRol'] = $usuario['idRol'];
+            $validClave = password_verify($passCliente,$usuario['password']);
+            $verificado = $usuario['verificado'];
+            if($verificado == 'TRUE'){    
+                if($validClave == 1){
+                    /* INICIAMOS LAS VARIABLES DE SESSION */
+                    $_SESSION['correo'] = $usuario['correo'];
+                    $_SESSION['idUsuario'] = $usuario['idUsuario'];
+                    $_SESSION['nombre'] = $usuario['nombreCompleto'];
+                    $_SESSION['imgUsuario'] = $usuario['imgUsuario'];
+                    $_SESSION['idRol'] = $usuario['idRol'];
 
-                if($_SESSION['idRol'] == 3){
-                    header("Location:../adm/panel-adm.php");
+                    if($_SESSION['idRol'] == 3){
+                        header("Location:../adm/panel-adm.php");
+                    }else{
+                        header("Location:../index.php");
+                    }
+                    
                 }else{
-                    header("Location:../index.php");
+                    $notificacion = "Error: La contraseña ingresada es incorrecta.";
                 }
-                
             }else{
-                $notificacion = "Error: La contraseña ingresada es incorrecta.";
+                $notificacion = "Error: El correo ingresado no ha sido verificado.";
             }
         }
        
@@ -56,14 +61,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row">
 
                 <div class="col-md-5">
-                    <h1 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h1>
-                    <p class="text-center">Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica únicamente para aquellos que completen el proceso de registro exitosamente.</p>
+                    <h2 class="mb-1 text-center"><b>Ingresa tus datos y navega en la app</b></h2><br>
+                    <p class="text-center">¿Estás listo para tener una nueva experiencia?<br>
+                        <i>Speedservice</i> te ofrece publicar o solicitar un remis, mandado o flete desde la web.</p>
                 </div>
 
                 <div class="offset-md-1 col-md-5">
                     <form action="ingresar.php" method="POST">
                         <div class="mb-3">
-                            <label for="correoCliente">Correo:</label>
+                            <label for="correoCliente">Correo electrónico:</label>
                             <input type="text" class="form-control" id="correoCliente" name="correoCliente">
                             <p class="text-white bg-danger msj-error">Error: El nombre debe tener al menos 6 caracteres.</p>
                         </div>
