@@ -19,13 +19,13 @@ require_once('../../includes/header.php');
 
 <section class="alta-categorias">
     <div class="container">
-        <h2 class="text-center">Listado de categorías</h2>
+        <h1 class="text-center">Listado de Categorías</h1>
 
-        <div class="table-responsive">
+        <div class="table-responsive bg-white">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">Imágen</th>
+                        <th scope="col">Imagen</th>
                         <th scope="col">Categoría</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Acción</th>
@@ -37,7 +37,7 @@ require_once('../../includes/header.php');
                         foreach ($categorias as $fila) {
                             echo '
                                 <tr>
-                                    <td class="align-middle"><img src="'.RUTARAIZ.'/img/categorias/'.$fila['imgCategoria'].'" alt="imágen de la categoría" style="max-width:100px"></td>
+                                    <td class="align-middle"><img src="'.RUTARAIZ.'/img/categorias/'.$fila['imgCategoria'].'" alt="imagen de la categoría" style="max-width:100px"></td>
                                     <td class="align-middle">'.$fila['categoria'].'</td>
                                     <td class="align-middle">'.$fila['descripcionCategoria'].'</td>
                                     <td class="align-middle">
