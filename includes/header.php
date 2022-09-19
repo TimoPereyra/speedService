@@ -56,7 +56,12 @@
                         <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="img-avatar">
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <?php if($_SESSION['idRol'] == 3) : ?>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/adm/panel-adm.php">Panel de control</a></li>
+                        <?php endif; ?>
+                        <?php if($_SESSION['idRol'] == 1 ) : ?>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php">Ser proveedor</a></li>
+                        <?php endif; ?>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>

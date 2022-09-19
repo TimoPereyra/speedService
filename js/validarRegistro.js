@@ -60,7 +60,23 @@ function validacionCorreo(){
         },
         success: function(data){
             console.log(data);
-            alert(data);
+            
+            if(data == 'Tu mensaje ha sido enviado!'){
+                swal({
+                    title: "Correo enviado correctamente!",
+                    text: "Hemos enviado un código a su correo electronico.",
+                    icon: 'success'
+                    });
+                    document.querySelector('#btnEnviar').classList.toggle('d-none');
+                    document.querySelector('#btnCodigo').classList.toggle('d-none');
+            }else{
+                swal({
+                    title: "Ha ocurrido un error.",
+                    text: "No se ha procesado la solicitud, vuelva a intentarlo.",
+                    icon: 'error'
+                    });
+            }
+            
         },
         error: function(){
         }

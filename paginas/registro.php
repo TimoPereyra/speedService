@@ -101,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <seccion class="formulario py-1">
        
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
             
                 <div class="col-4">
                     <h2 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h2>
@@ -130,24 +130,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="file" class="form-control" id="imgPerfil" name="imgPerfil">
                             <p class="text-white bg-danger msj-error">Error: Debe elegir una imagen de perfil.</p>
                         </div>
-                        <div class="mb-3">
-                            <label for="correoProveedor">Correo electrónico:</label>
-                            <input type="email" class="form-control" id="correoProveedor" name="correoCliente" required>
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="telefonoProveedor">Teléfono (Ej. 2346-xxxxxx):</label>
                             <input type="text" class="form-control" id="telefonoProveedor" name="telefonoCliente" required>
                         </div>
+
                         <div class="mb-3">
-                            <label for="servicioProveedor">Tipo de servicio:</label>
-                            <select name="tipoServicio" id="servicioProveedor" class="form-select">
-                                <?php 
-                                foreach($categorias as $fila){
-                                    echo '<option value="'.$fila['idCategoria'].'">'.ucfirst($fila['categoria']).'</option>';
-                                }
-                                ?>
-                            </select>
+                            <label for="correoProveedor">Correo electrónico:</label>
+                            <input type="email" class="form-control" id="correoProveedor" name="correoCliente" required>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="codigo">Código:</label>
+                            <input type="text" class="form-control" id="codigo" name="codigo" required>
+                        </div>
+                      
+                        <button type="button" id="btnCodigo" onclick="validacionCorreo()" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Solicitar código</button>
+
                     </div>
 
                     <div class="col-12 col-md-6">
@@ -171,16 +171,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <label for="passConfirm">Repita su contraseña:</label>
                             <input type="password" class="form-control" id="passConfirm" name="passConfirm" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="codigo">Código:</label>
-                            <input type="text" class="form-control" id="codigo" name="codigo" required>
-                        </div>
+                        
                         
                     </div>
 
                                        
-                    <button type="submit" class="btn d-grid gap-2 col-5 mx-auto boton-servicio">Enviar solicitud</button>
-                    <button type="button" onclick="validacionCorreo()" class="btn d-grid gap-2 col-5 mx-auto boton-servicio">Validar correo</button>
+                    <button type="submit" id="btnEnviar" class="d-none btn d-grid gap-2 col-5 mx-auto boton-servicio">Enviar solicitud</button>
+                    
 
                 </form>
 
@@ -190,6 +187,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </seccion>
 
 </main>
+<!-- SWEET ALERT -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
     let errorServidor = "<?php echo (isset($notificacion)) ? $notificacion : '' ;?>";
@@ -197,6 +196,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         alert('Error');
     }
 
+   
 </script>
 <script src="../js/validarRegistro.js?<?php echo time();?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

@@ -6,7 +6,7 @@ if(isset($_SESSION['idUsuario'])){
 }
 
 
-$pagina = 'registro';
+$pagina = 'login';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
 require_once('../includes/header.php');

@@ -16,7 +16,7 @@ require_once('../includes/header.php');
     <section class="panel-bienvenida">
         <div class="container panel-admin">
             <h1 class="text-center">Panel de Control</h1>
-            <p  class="text-center">Aquí podrás realizar las operaciones que desees sobre los registros de categorías de servicios, proveedores y clientes.</p>
+            <p  class="text-center"><i>Aquí podrás realizar las operaciones que desees sobre los registros de categorías de servicios, proveedores y clientes.</i></p>
         </div>       
     </section>
 

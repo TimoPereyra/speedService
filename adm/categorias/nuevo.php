@@ -41,8 +41,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="container py-4">
         <h1 class="text-center">Nueva categoría</h1>
 
-        <div class="row">
-            <form action="nuevo.php" method="POST" class="col-md-6 mx-auto py-4" enctype="multipart/form-data">
+        <div class="row py-4">
+            <form action="nuevo.php" method="POST" class="col-md-6 mx-auto py-4 fondo-formulario" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="categoria">Nombre de la categoría:</label>
                     <input class="form-control" type="text" name="categoria" id="categoria">
