@@ -44,48 +44,58 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $passConfirm = $_POST['passConfirm'];
     $img = $_FILES['imgPerfil']['name'];
     $imgTmpName = $_FILES['imgPerfil']['tmp_name'];
+    
     $maxEdad = 95;
     $minEdad = 16;
     $edad = obtener_edad_segun_fecha($fechaNacimiento);
     $codigo = $_POST['codigo'];
         
-    if($codigo != $_SESSION['codigo']){
+     if($codigo != $_SESSION['codigo']){
          unset($_SESSION['codigo']);
          
         $notificacion = "Error: El codigo de validacion es incorrecto.";
-        
-    }
-    else{
+     }else if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
+        $notificacion = "Error: no puede dejar campos vacíos.";
+    }else if(strlen($nombreCompleto) <= 5){
+        $notificacion = "Error: El nombre debe contener al menos 6 caracteres.";
+        $nombreError = true;
+    }else if($pass != $passConfirm){
+        $notificacion = "Error: Las contraseñas deben coincidir.";
+    }else if ( $edad < $minEdad || $edad > $maxEdad ){
+        $notificacion = "Error: La edad ingresada no es correcta.";
+    }else if(!filter_var($correoCliente, FILTER_VALIDATE_EMAIL)){
+        $notificacion = "Error: El correo ingresado no es correcto o la imagen es muy pesada.";
+    }else if(!validarTelefono($telefonoCliente)){
+        $notificacion = "Error: El teléfono ingresado no es correcto.";
+    }else{
+        /* LISTAR USUARIO POR CORREO  */
+        unset($_SESSION['codigo']);
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");
+        $stmt->execute(array(':correo' => $correoCliente));
+
+        if($stmt->rowCount() > 0){
+            $notificacion = "Error: El correo ya está registrado.";
+        }else{
+
+            $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
+            move_uploaded_file($imgTmpName,$archivo_destino);
+
             /* LISTAR USUARIO POR CORREO  */
-           
-            unset($_SESSION['codigo']);
-            $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");
-            $stmt->execute(array(':correo' => $correoCliente));
+            
+            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
+            $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+            $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
-            if($stmt->rowCount() > 0){
-                $notificacion = "Error: El correo ya está registrado.";
-            }else{
-
-                $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
-                move_uploaded_file($imgTmpName,$archivo_destino);
-
-                /* LISTAR USUARIO POR CORREO  */
+            if($resultado){
                 
-                $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
-                $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-                $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
-
-                if($resultado){
-                    
-                    $notificacionExito = "Éxito: se ha registrado correctamente.";
-                }
+                $notificacionExito = "Éxito: se ha registrado correctamente.";
             }
         }
+    }
 
 }
 
 ?>
-
 
 
 
