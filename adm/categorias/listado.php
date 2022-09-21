@@ -19,7 +19,7 @@ require_once('../../includes/header.php');
 
 <section class="alta-categorias">
     <div class="container">
-        <h1 class="text-center">Listado de Categorías</h1>
+        <h1 class="text-center py-5">Listado de Categorías</h1>
 
         <div class="table-responsive bg-white">
             <table class="table table-striped">

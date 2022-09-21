@@ -49,52 +49,45 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $edad = obtener_edad_segun_fecha($fechaNacimiento);
     $codigo = $_POST['codigo'];
         
-     if($codigo == $_SESSION['codigo']){
+    if($codigo != $_SESSION['codigo']){
          unset($_SESSION['codigo']);
-         $notificacion = "¡Código correcto!";
-        //$notificacion = "Error: El codigo de validacion es incorrecto.";
-     }else if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
-        $notificacion = "Error: no puede dejar campos vacíos.";
-    }else if(strlen($nombreCompleto) <= 5){
-        $notificacion = "Error: El nombre debe contener al menos 6 caracteres.";
-        $nombreError = true;
-    }else if($pass != $passConfirm){
-        $notificacion = "Error: Las contraseñas deben coincidir.";
-    }else if ( $edad < $minEdad || $edad > $maxEdad ){
-        $notificacion = "Error: La edad ingresada no es correcta.";
-    }else if(!filter_var($correoCliente, FILTER_VALIDATE_EMAIL)){
-        $notificacion = "Error: El correo ingresado no es correcto.";
-    }else if(!validarTelefono($telefonoCliente)){
-        $notificacion = "Error: El teléfono ingresado no es correcto.";
-    }else{
-        /* LISTAR USUARIO POR CORREO  */
-
-        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");
-        $stmt->execute(array(':correo' => $correoCliente));
-
-        if($stmt->rowCount() > 0){
-            $notificacion = "Error: El correo ya está registrado.";
-        }else{
-
-            $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
-            move_uploaded_file($imgTmpName,$archivo_destino);
-
+         
+        $notificacion = "Error: El codigo de validacion es incorrecto.";
+        
+    }
+    else{
             /* LISTAR USUARIO POR CORREO  */
-            
-            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
-            $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-            $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
+           
+            unset($_SESSION['codigo']);
+            $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");
+            $stmt->execute(array(':correo' => $correoCliente));
 
-            if($resultado){
+            if($stmt->rowCount() > 0){
+                $notificacion = "Error: El correo ya está registrado.";
+            }else{
+
+                $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
+                move_uploaded_file($imgTmpName,$archivo_destino);
+
+                /* LISTAR USUARIO POR CORREO  */
                 
-                $notificacionExito = "Éxito: se ha registrado correctamente.";
+                $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
+                $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+                $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
+
+                if($resultado){
+                    
+                    $notificacionExito = "Éxito: se ha registrado correctamente.";
+                }
             }
         }
-    }
 
 }
 
 ?>
+
+
+
 
 <main class="registrar-servicio">
 
@@ -146,14 +139,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                             <input type="text" class="form-control" id="codigo" name="codigo" required>
                         </div>
                       
-                        <button type="button" id="btnCodigo" onclick="validacionCorreo()" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Solicitar codigo</button>
+                        <button type="button" id="btnCodigo" onclick="validacionCorreo()" class="btn d-grid gap-2 col-6 mx-auto boton-servicio">Solicitar código</button>
 
                     </div>
 
                     <div class="col-12 col-md-6">
                         <div class="mb-3">
                             <label for="telefonoProveedor">Dirección:</label>
-                            <input type="text" class="form-control" id="telefonoProveedor" name="direccionCliente" required>
+                            <input type="text" class="form-control" id="direccionCliente" name="direccionCliente" required>
                         </div>
                         <div class="mb-3">
                             <label for="fechaNacimiento">Fecha de nacimiento:</label>
@@ -190,14 +183,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- SWEET ALERT -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
+<!-- <script>
     let errorServidor = "<?php echo (isset($notificacion)) ? $notificacion : '' ;?>";
     if(errorServidor){
         alert('Error');
     }
 
    
-</script>
+</script> -->
 <script src="../js/validarRegistro.js?<?php echo time();?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <?php

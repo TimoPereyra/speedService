@@ -48,10 +48,10 @@ function validacionCorreo(){
         alert('Tiene que completar el correo que va a ser enviado el codigo.');
         return false;
     }
-    console.log(codigo+' Y CORREO '+correo);
+  //  console.log(codigo+' Y CORREO '+correo);
     var param = {'correo' : correo,
                 'codigo' : codigo}
-    console.log(param);
+  //  console.log(param);
     $.ajax({
         url: '../ajax/ajax_enviar_codigo.php',
         type: 'POST',
@@ -60,8 +60,7 @@ function validacionCorreo(){
         },
         success: function(data){
             console.log(data);
-            
-            if(data == 'Tu mensaje ha sido enviado!'){
+            if(data){
                 swal({
                     title: "Correo enviado correctamente!",
                     text: "Hemos enviado un código a su correo electronico.",

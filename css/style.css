@@ -36,9 +36,10 @@ principal: #fa0050
 .form-eliminar{
     margin-top: 2rem;
     text-align: center;
-    color: #fff;
+    color: black;
     padding: 1rem;
-    background-color: #151515;
+    background-color: #f2f2f2;
+    border-radius: 9px;
 }
 /* ESTILOS NAV */
 .navbar-collapse{
@@ -155,6 +156,7 @@ header .cta:hover{
 }
 .boton-servicios:hover{
     background-color: black!important;
+    color: white;
 }
 
 /* SECCION INFO SERVICIOS */
@@ -227,10 +229,6 @@ footer .copyright{
 .registrar-servicio .formulario p{
     text-align: justify;
 }
-/*
-.arregloForm{
-    margin-top: -79px;
-}*/
 
 /* PAGINA SERVICIOS */
 .pagina-servicios{
@@ -278,9 +276,10 @@ footer .copyright{
     color: white;
 }
 .panel-admin{
-    background-color: #fa004fe0;
-    border-radius: 5px;
-    padding: 0.8rem;
+    border-radius: 100px;
+    padding: 0.4rem;
+    background-image: linear-gradient(to right, rgba(50, 54, 105, 0.678) 0%, rgba(4, 4, 68, 0.842) 80%);
+    color: #fff;
 }
 .boton-mostrar{
     border-radius: 15px;
@@ -316,6 +315,31 @@ footer .copyright{
     color: white;
     margin: 4px;
 }
+.boton-crear-categoria:hover{
+    background-color: #f2f2f2!important;
+    color: #fa0050;
+}
+.boton-eliminar-categoria{
+    border-radius: 20px;
+    opacity: .9;
+    background-color: #fa0050;
+    color: white;
+    margin: 4px;
+}
+.boton-eliminar-categoria:hover{
+    background-color: red!important;
+    color: #f2f2f2;
+    transform: scale(1.1);
+}
+.imagen-modificar-categoria{
+    max-width: 100%;
+    max-height: 135px;
+}
+.fondo-formulario{
+    background-color: #434343b2;
+    padding: 10px;
+    border-radius: 8px;
+}
 
 /* PAGINA SER PROVEEDOR */
 .pagina-proveedor{
@@ -335,6 +359,23 @@ footer .copyright{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url(../img/registro1.jpg) no-repeat center center;
+    background: url(../img/elegir_servicio_proveedor.jpg) no-repeat center center;
     background-size: cover;
+}
+
+/* ALTA REGISTRO FLETE */
+
+.registro-servicio{
+    padding-top: 4.5rem!important;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(../img/panel_administrador1.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+#datosServicio,#datosVehiculo{
+    transition: all 1s ease;
 }
