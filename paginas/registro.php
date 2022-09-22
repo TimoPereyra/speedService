@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
      if($codigo != $_SESSION['codigo']){
          unset($_SESSION['codigo']);
          
-        $notificacion = "Error: El codigo de validacion es incorrecto.";
+        $notificacion = "Error: El código de validación es incorrecto.";
      }else if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
         $notificacion = "Error: no puede dejar campos vacíos.";
     }else if(strlen($nombreCompleto) <= 5){
@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if ( $edad < $minEdad || $edad > $maxEdad ){
         $notificacion = "Error: La edad ingresada no es correcta.";
     }else if(!filter_var($correoCliente, FILTER_VALIDATE_EMAIL)){
-        $notificacion = "Error: El correo ingresado no es correcto o la imagen es muy pesada.";
+        $notificacion = "Error: El correo ingresado no es correcto.";
     }else if(!validarTelefono($telefonoCliente)){
         $notificacion = "Error: El teléfono ingresado no es correcto.";
     }else{
@@ -74,7 +74,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $stmt->execute(array(':correo' => $correoCliente));
 
         if($stmt->rowCount() > 0){
-            $notificacion = "Error: El correo ya está registrado.";
+            $notificacion = "Error: El correo ingresado ya está registrado.";
         }else{
 
             $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
@@ -87,8 +87,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
             if($resultado){
-                
+
                 $notificacionExito = "Éxito: se ha registrado correctamente.";
+
             }
         }
     }
@@ -115,9 +116,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?php 
             if(isset($notificacion)){
                 echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
-            }else if(isset($notificacionExito)){
-                echo '<p class="bg-success text-white text-center">'.$notificacionExito.'</p>';
-            }                    
+            }else {
+
+            }
+
             ?>
 
                 <form action="registro.php" method="POST" enctype="multipart/form-data" id="formRegistro" class="row">
@@ -193,14 +195,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- SWEET ALERT -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- <script>
+ <script>
     let errorServidor = "<?php echo (isset($notificacion)) ? $notificacion : '' ;?>";
+    let exitoServidor = "<?php echo (isset($notificacionExito)) ? $notificacionExito : '' ;?>";
+    
     if(errorServidor){
-        alert('Error');
+        alert(errorServidor);
+    }else if(exitoServidor)
+    {
+        alert(exitoServidor); 
+        window.location.href = '/proyectos/speedservice/paginas/ingresar.php';
+        
     }
 
    
-</script> -->
+</script>
 <script src="../js/validarRegistro.js?<?php echo time();?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <?php
