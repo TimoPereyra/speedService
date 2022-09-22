@@ -362,3 +362,40 @@ footer .copyright{
     background: url(../img/elegir_servicio_proveedor.jpg) no-repeat center center;
     background-size: cover;
 }
+
+/* ALTA REGISTRO FLETE */
+
+.registro-servicio{
+    padding-top: 4.5rem!important;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(../img/registrar-servicio.jpg) no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+#datosServicio,#datosVehiculo{
+    transition: all 1s ease;
+}
+.imagen_usuario{
+    margin: 5px;
+    min-width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 120px;
+    border: 2px solid #fa0050;
+}
+.texto-usuario{
+    color: #f2f2f2;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.form-usuario{
+    color: #f2f2f2;
+    padding: 0.5rem;
+    background-image: linear-gradient(to left, rgba(226, 88, 53, 0.884) 0%, rgba(211, 7, 68, 0.877) 50%);
+    border-radius: 9px;
+}

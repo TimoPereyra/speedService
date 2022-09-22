@@ -8,13 +8,15 @@ if(!isset($_SESSION['idUsuario'])){
 $pagina = 'elegir-proveedor';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
-require_once('../includes/header.php');
 
 /* LISTAR CATEGORIAS */
-$stmt = $conexion->prepare("SELECT * FROM categorias");
+$stmt = $conexion->prepare("SELECT * FROM categorias WHERE bajaCategoria = 0");
 $stmt->execute();
 
-$categorias = $stmt->fetchAll();?>
+$categorias = $stmt->fetchAll();
+
+require_once('../includes/header.php');
+?>
 
 <main class="cardProvedor">
 <div class="container">
@@ -26,33 +28,25 @@ $categorias = $stmt->fetchAll();?>
             foreach($categorias as $fila)
             {
 
-                if($fila['idCategoria']== 1 || $fila['idCategoria'] == 3){
-                    echo '
-                        <div class="col-md-4 mb-3">
+                echo '
+                    <div class="col-md-4 mb-3">
                         <div class="card">
                             <img src="../img/categorias/'.$fila['imgCategoria'].'" class="card-img-top imagen-servicios" alt="">
                             <div class="card-body">
-                            <h4 class="card-title text-center py-1 mb-3">'.ucfirst($fila['categoria']).'</h4>
-                            <a href="#" class="btn d-grid gap-2 col-8 mx-auto boton-servicios">Completar formulario</a>
-                            </div>
-                        </div>
-                        </div>
-                    ';
-                    
+                            <h4 class="card-title text-center py-1 mb-3">'.ucfirst($fila['categoria']).'</h4>';
+                if($fila['idCategoria'] == 1){
+                    echo '<a href="registro-proveedores/fletes.php" class="btn d-grid gap-2 col-8 mx-auto boton-servicios">Completar formulario</a>';
+                }else if($fila['idCategoria'] == 2){
+                    echo '<a href="registro-proveedores/mandados.php" class="btn d-grid gap-2 col-8 mx-auto boton-servicios">Completar formulario</a>';
+                }else{
+                    echo '<a href="registro-proveedores/remises.php" class="btn d-grid gap-2 col-8 mx-auto boton-servicios">Completar formulario</a>';
                 }
-                if($fila['idCategoria']== 2){
-                    echo '
-                        <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="../img/categorias/'.$fila['imgCategoria'].'" class="card-img-top imagen-servicios" alt="">
-                            <div class="card-body">
-                            <h4 class="card-title text-center py-1 mb-3">'.ucfirst($fila['categoria']).'</h4>
-                            <a href="#" class="btn d-grid gap-2 col-8 mx-auto boton-servicios">Completar formulario</a>
+                echo '
                             </div>
                         </div>
-                        </div>
-                    ';
-                    }
+                    </div>
+                ';
+                                
             }
             
 
@@ -64,4 +58,5 @@ $categorias = $stmt->fetchAll();?>
 
 </main>
 <?php 
-require_once('../includes/footer.php');?>
+require_once('../includes/footer.php');
+?>

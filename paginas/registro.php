@@ -44,15 +44,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $passConfirm = $_POST['passConfirm'];
     $img = $_FILES['imgPerfil']['name'];
     $imgTmpName = $_FILES['imgPerfil']['tmp_name'];
+    
     $maxEdad = 95;
     $minEdad = 16;
     $edad = obtener_edad_segun_fecha($fechaNacimiento);
     $codigo = $_POST['codigo'];
         
-     if($codigo == $_SESSION['codigo']){
+     if($codigo != $_SESSION['codigo']){
          unset($_SESSION['codigo']);
-         $notificacion = "¡Código correcto!";
-        //$notificacion = "Error: El codigo de validacion es incorrecto.";
+         
+        $notificacion = "Error: El código de validación es incorrecto.";
      }else if(empty($nombreCompleto) || empty($correoCliente) || empty($telefonoCliente) || empty($dniCliente) || empty($direccionCliente) || empty($fechaNacimiento) || empty($img) || empty($pass)){
         $notificacion = "Error: no puede dejar campos vacíos.";
     }else if(strlen($nombreCompleto) <= 5){
@@ -68,12 +69,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $notificacion = "Error: El teléfono ingresado no es correcto.";
     }else{
         /* LISTAR USUARIO POR CORREO  */
-
+        unset($_SESSION['codigo']);
         $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE correo = :correo");
         $stmt->execute(array(':correo' => $correoCliente));
 
         if($stmt->rowCount() > 0){
-            $notificacion = "Error: El correo ya está registrado.";
+            $notificacion = "Error: El correo ingresado ya está registrado.";
         }else{
 
             $archivo_destino = '../img/usuarios/'.$_FILES['imgPerfil']['name'];
@@ -86,8 +87,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
             if($resultado){
-                
+
                 $notificacionExito = "Éxito: se ha registrado correctamente.";
+
             }
         }
     }
@@ -95,6 +97,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 ?>
+
+
 
 <main class="registrar-servicio">
 
@@ -112,9 +116,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?php 
             if(isset($notificacion)){
                 echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
-            }else if(isset($notificacionExito)){
-                echo '<p class="bg-success text-white text-center">'.$notificacionExito.'</p>';
-            }                    
+            }else {
+
+            }
+
             ?>
 
                 <form action="registro.php" method="POST" enctype="multipart/form-data" id="formRegistro" class="row">
@@ -153,7 +158,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <div class="col-12 col-md-6">
                         <div class="mb-3">
                             <label for="telefonoProveedor">Dirección:</label>
-                            <input type="text" class="form-control" id="telefonoProveedor" name="direccionCliente" required>
+                            <input type="text" class="form-control" id="direccionCliente" name="direccionCliente" required>
                         </div>
                         <div class="mb-3">
                             <label for="fechaNacimiento">Fecha de nacimiento:</label>
@@ -190,10 +195,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <!-- SWEET ALERT -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script>
+ <script>
     let errorServidor = "<?php echo (isset($notificacion)) ? $notificacion : '' ;?>";
+    let exitoServidor = "<?php echo (isset($notificacionExito)) ? $notificacionExito : '' ;?>";
+    
     if(errorServidor){
-        alert('Error');
+        alert(errorServidor);
+    }else if(exitoServidor)
+    {
+        alert(exitoServidor); 
+        window.location.href = '/proyectos/speedservice/paginas/ingresar.php';
+        
     }
 
    
