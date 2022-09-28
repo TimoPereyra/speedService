@@ -107,7 +107,7 @@ require_once('../../includes/header.php');
                 }                    
                 ?>
 
-               <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistro">
+            <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistroFletes">
 
                <div class="row" id="datosServicio">
                         <div class="col-12 col-md-6 arregloForm row">
@@ -195,7 +195,7 @@ require_once('../../includes/header.php');
                         </div>
                    
                              
-                        <button class="btn d-grid gap-2 col-5 mx-auto boton-servicio" id="btnSiguiente">Siguiente</button>
+                        <button class="btn d-grid gap-2 col-5 mx-auto boton-servicio"  id="btnSiguiente">Siguiente</button>
                    <button type="submit" class="btn d-grid gap-2 col-5 mx-auto boton-servicio d-none"  id="btnEnviar">Enviar solicitud</button>
 
                </form>
