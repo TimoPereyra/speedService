@@ -1,6 +1,8 @@
 let btnSiguiente = document.querySelector('#btnSiguiente');
+let btnEnviar = document.querySelector('#btnEnviar');
 let datosServicio = document.querySelector('#datosServicio');
 let datosVehiculo = document.querySelector('#datosVehiculo');
+
 btnSiguiente.addEventListener('click', (e) => {
     e.preventDefault();
     
@@ -18,6 +20,8 @@ btnSiguiente.addEventListener('click', (e) => {
     setTimeout(() => {
         datosVehiculo.classList.toggle('opacity-0');
         datosVehiculo.classList.toggle('opacity-100');
+        e.target.remove();
+        btnEnviar.classList.toggle('d-none'); 
     },"500")
    
     
