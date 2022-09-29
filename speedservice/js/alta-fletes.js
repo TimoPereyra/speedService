@@ -1,15 +1,11 @@
 let btnSiguiente = document.querySelector('#btnSiguiente');
 let btnEnviar = document.querySelector('#btnEnviar');
-
-
-
 btnSiguiente.addEventListener('click', (e) => {
     e.preventDefault();
-    
         let formularioRegistroFletes = document.querySelector('#formRegistroFletes');
         let arrayInputs = formularioRegistroFletes.querySelectorAll('input');
         let arrayErrores = formularioRegistroFletes.querySelectorAll('.msj-error');
-        var pat=/^[A-ZÑ]{3}\d{3}$/;
+        let regexPatente = /(^[a-zA-Z]{3}[-]{0,1}[0-9]{3,4}$)|(^[a-zA-Z]{2}[-]{0,1}[0-9]{3}[a-zA-Z]{1}$)/
         console.log(arrayInputs);
         arrayErrores.forEach(element => {
             element.style.display = "none";
@@ -21,7 +17,9 @@ btnSiguiente.addEventListener('click', (e) => {
 
         if(arrayInputs[0].value.length <= 5){
             arrayInputs[0].style.border = "3px solid red";
-           
+           let msj = document.createElement('p');
+           msj.textContent = "Debe ser mayor a 5 caracteres.";
+           arrayInputs[0].parentNode.append(msj);
             banderaForm = false;  
         }
         if(arrayInputs[1].value == ""){
@@ -59,7 +57,9 @@ btnSiguiente.addEventListener('click', (e) => {
                     btnEnviar.classList.toggle('d-none'); 
                 },"500") 
                 btnEnviar.addEventListener('click', (e) => {
-                    if(arrayInputs[3].value != pat){
+                    /** Patentes validas : aaa3333,aaa333,aa333a */
+                e.preventDefault();
+                    if( !regexPatente.test(arrayInputs[3].value)){
                         arrayInputs[3].style.border = "3px solid red";
                             
                         banderaForm = false;
