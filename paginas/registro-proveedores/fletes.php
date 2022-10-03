@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
     if(empty($nombreServicio) || empty($alcance) || empty($horario) || empty($descripcionServicio) || empty($patente) || empty($idTipoVehiculo) || empty($descripcionCapacidad) || empty($descripcionVehiculo) || empty($imgSeguro) || empty($imgVtv) || empty($arregloImgVehiculo) ){
-        $notificacion = "Error: No puede haber campos vacíos.";
+        $notificacion = "Error: No puede dejar campos vacíos.";
     }else{
         
         
@@ -68,9 +68,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $resultado = $stmt->execute(array(':servicio' => $nombreServicio,':descripcion' => $descripcionServicio,':horario' => $horario,':idCat' => $tipoServicio,'idVehiculo' => $idVehiculo, ':alcance' => $alcance,':idEstado' => $idEstadoServicio, ':idUsuario' => $_SESSION['idUsuario']));
 
                 if($resultado){
-                    $notificacionExito = 'Éxito: Se ha procesado el servicio correctamente';
+                    $notificacionExito = 'Éxito: Se ha procesado el servicio correctamente.';
                 }else{
-                    $notificacion = 'Ha ocurrido un error al intentar cargar el servicio';
+                    $notificacion = 'Ha ocurrido un error al intentar cargar el servicio.';
                 }
 
             }
@@ -92,9 +92,9 @@ require_once('../../includes/header.php');
             
            <div class="row align-items-center">
            
-               <div class="col-4 form-usuario">
+               <div class="col-4 form-usuario d-flex flex-column align-items-center">
                    <?php echo '<h3 class="texto-usuario text-center">'.'Bienvenid@, '  .$_SESSION['nombre'].'</h3>';?>
-                   <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario">
+                   <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario m-0">
                    <p class="text-center texto-usuario"><i>Ya puedes registrar tu servicio. Los datos ingresados serán validados por los administradores del sitio.</i></p>
                </div>
 
@@ -107,7 +107,7 @@ require_once('../../includes/header.php');
                 }                    
                 ?>
 
-               <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistro">
+               <form action="fletes.php" method="POST" enctype="multipart/form-data" id="formRegistroFletes">
 
                <div class="row" id="datosServicio">
                         <div class="col-12 col-md-6 arregloForm row">

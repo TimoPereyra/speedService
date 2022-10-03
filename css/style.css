@@ -361,7 +361,10 @@ footer .copyright{
 .estado-servicio3{
     color: red;
 }
-
+.img-detalle-servicio{
+    max-width: 100%;
+    max-height: 125px;
+}
 /* PAGINA SER PROVEEDOR */
 .pagina-proveedor{
     padding-top: 4.5rem!important;
@@ -401,14 +404,12 @@ footer .copyright{
     transition: all 1s ease;
 }
 .imagen_usuario{
-    margin: 5px;
-    min-width: 150px;
+    width: 150px;
     height: 150px;
     border-radius: 50%;
     justify-content: center;
     align-items: center;
-    margin-left: 120px;
-    border: 2px solid #fa0050;
+    margin: 2rem 0;
 }
 .texto-usuario{
     color: #f2f2f2;

@@ -44,12 +44,12 @@ require_once('../../includes/header.php');
                                     <td class="align-middle">'.$fila['nombreServicio'].'</td>
                                     <td class="align-middle">'.$fila['categoria'].'</td>';
                                     
-                                    if ($fila['idEstadoServicio'] == 1){ 
-                                        echo '<td class="align-middle text-success">'.$fila['estadoServicio'].'</td>';
+                                    if ($fila['idEstadoServicio'] == 2){ 
+                                        echo '<td class="align-middle text-warning fw-bold">'.$fila['estadoServicio'].'</td>';
                                     }else if ($fila['idEstadoServicio'] == 3){ 
-                                        echo '<td class="align-middle text-danger">'.$fila['estadoServicio'].'</td>';
-                                    }else if ($fila['idEstadoServicio'] == 2){ 
-                                        echo '<td class="align-middle text-warning">'.$fila['estadoServicio'].'</td>';
+                                        echo '<td class="align-middle text-danger fw-bold">'.$fila['estadoServicio'].'</td>';
+                                    }else{ 
+                                        echo '<td class="align-middle text-success fw-bold">'.$fila['estadoServicio'].'</td>';
                                     }
                                     
                             echo '<td class="align-middle">
