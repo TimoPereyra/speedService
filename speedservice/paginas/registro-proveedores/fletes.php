@@ -210,7 +210,7 @@ require_once('../../includes/header.php');
     let exitoServidor = "<?php echo (isset($notificacionExito)) ? $notificacionExito : '' ;?>";
     if (exitoServidor){
         alert(exitoServidor); 
-        window.location.href = '/speedservice/paginas/servicios.php';
+        window.location.href = '../servicios.php';
         
     }
 </script>

@@ -4,23 +4,23 @@ function validar(archivo,tam) {
     // Recibir nombre de archivo
      // Obtener extensión del archivo
      let extension = archivo.substring(archivo.lastIndexOf('.'),archivo.length);
-     var size= tam.files[0].size;
+    //  var size= tam.files[0].size;
         switch (extension) {
           case '.jpg':
-            if(size > 5242880){
+            if(tam > 5242880){
                 return false;
             }
             return true ;
           
               
           case '.png':
-            if(size > 5242880){
+            if(tam > 5242880){
                 return false;
             }
             return true ;
               
           case '.jpeg':
-            if(size > 5242880){
+            if(tam > 5242880){
                 return false;
             }
             return true ;
@@ -64,6 +64,7 @@ btnSiguiente.addEventListener('click', (e) => {
         }else{
             if(arrayInputs[0].nextElementSibling){
                 arrayInputs[0].nextElementSibling.remove();
+                banderaForm = true;
             }
         }
 
@@ -85,6 +86,7 @@ btnSiguiente.addEventListener('click', (e) => {
         }else{
             if(arrayInputs[2].nextElementSibling){
                 arrayInputs[2].nextElementSibling.remove();
+                banderaForm = true;
             }
 
             
@@ -128,6 +130,7 @@ btnSiguiente.addEventListener('click', (e) => {
                     }else{
                         if(arrayInputs[3].nextElementSibling){
                             arrayInputs[3].nextElementSibling.remove();
+                            banderaForm = true;
                         }
                         
                     }
@@ -137,7 +140,7 @@ btnSiguiente.addEventListener('click', (e) => {
                             banderaForm = false;
                         
                     }
-                    if(!validar(arrayInputs[5].value,arrayInputs[5])){
+                    if(!validar(arrayInputs[5].value,arrayInputs[5].files[0].size)){
                             arrayInputs[5].style.border = "3px solid red";
                             
                             if(!arrayInputs[5].nextElementSibling){
@@ -150,6 +153,7 @@ btnSiguiente.addEventListener('click', (e) => {
                         }else{
                             if(arrayInputs[5].nextElementSibling){
                                 arrayInputs[5].nextElementSibling.remove();
+                                banderaForm = true;
                             }
                         
                     }
@@ -166,6 +170,7 @@ btnSiguiente.addEventListener('click', (e) => {
                     }else{
                         if(arrayInputs[6].nextElementSibling){
                             arrayInputs[6].nextElementSibling.remove();
+                            banderaForm = true;
                         }
                     
                 }
