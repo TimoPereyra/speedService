@@ -9,6 +9,7 @@ $pagina = 'listado-servicios';
 require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
 
+
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     $idServicio = $_GET['id'];
     $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
@@ -71,16 +72,18 @@ require_once('../../includes/header.php');
             <div class="col-12 col-md-6">
                 <h4 class="mb-4 py-2 bg-secondary text-white text-center">Datos del Proveedor</h4>
                 <div class="mb-2">
-                   <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="imagen_usuario m-2">
+                    <label for="" class="text-dark"><b>Foto de perfil</b>:</label>
+                    <!---- AGREGAR IMG ---->                                  
+
                 </div>
                 <div class="mb-2">
-                    <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $datosServicio['nombreCompleto']; ?>">
+                    <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $datosServicio['nombreCompleto']; ?>" style="width: 310px;">
                 </div>
                 <div class="mb-2">
-                    <label for="" class="text-dark"><b>Correo</b>:</label> <input type="text" value="<?php echo $datosServicio['correo']; ?>">
+                    <label for="" class="text-dark"><b>Correo</b>:</label> <input type="text" value="<?php echo $datosServicio['correo']; ?>" style="width: 310px;">
                 </div>
                 <div class="mb-2">
-                    <label for="" class="text-dark"><b>Teléfono</b>:</label> <input type="text" value="<?php echo $datosServicio['telefono']; ?>">
+                    <label for="" class="text-dark"><b>Teléfono</b>:</label> <input type="text" value="<?php echo $datosServicio['telefono']; ?>" style="width: 310px;">
                 </div>
             </div>
 
@@ -93,14 +96,24 @@ require_once('../../includes/header.php');
                     <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $nombreServicio; ?>" name="nombreServicio" class="form-control">
                 </div>
                 
-                <!--- ARREGLARRRRRRRRRRRRRRRR / MARCAR OPCIÓN SELECCIONADA-->
-                <div>
+                <div class="mb-2">
                     <label for="" class="text-dark"><b>Categoría</b>:</label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option value="1"> <?php echo ($datosServicio['idCategoria'] == 1) ? $datosServicio['categoria'] : 'chau' ?> </option>
-                        <option value="2"> <?php echo ($datosServicio['idCategoria'] == 2) ? $datosServicio['categoria'] : 'male' ?> </option>
-                        <option value="3"> <?php echo ($datosServicio['idCategoria'] == 3) ? $datosServicio['categoria'] : 'hola' ?> </option>
-                    </select>
+                    <div class="d-flex">                  
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="flete" <?php echo ($datosServicio['idCategoria'] == 1) ? 'checked' : '' ?> value="1">
+                            <label class="form-check-label text-black" for="flete"> Flete </label>
+                        </div>
+                        
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="remis" <?php echo ($datosServicio['idCategoria'] == 3) ? 'checked' : '' ?> value="3">
+                            <label class="form-check-label text-black" for="remis"> Remis </label>
+                        </div>
+
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="mandado" <?php echo ($datosServicio['idCategoria'] == 2) ? 'checked' : '' ?> value="2">
+                            <label class="form-check-label text-black" for="mandado"> Mandado </label>
+                        </div>                      
+                    </div>
                 </div>
 
                 <div class="mb-2">
