@@ -129,7 +129,13 @@ require_once('../../includes/header.php');
 
                         <div class="mb-3">
                                 <label for="alcance">Alcance (kms. a la redonda):</label>
-                                <input type="text" class="form-control" id="alcance" name="alcance" required>
+                                <select class="form-control form-select-sm" aria-label=".form-select-sm example" required id="alcance" name="alcance">
+                                    <option selected>Desde... Hasta...</option>
+                                    <option value="50">0 - 50</option>
+                                    <option value="100">50 - 100</option>
+                                    <option value="150">100 - 150</option>
+                                    <option value="+150">150 - más</option>
+                                </select>
                         </div>
 
                         <div class="mb-3">

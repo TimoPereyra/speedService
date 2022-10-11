@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['id'])){
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     $idServicio = $_GET['id'];
-    $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
+    $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, imgUsuario, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
     $stmt->execute(array(':idServicio' => $idServicio));
     $datosServicio = $stmt->fetch();
 
@@ -78,8 +78,7 @@ require_once('../../includes/header.php');
                 <h4 class="mb-4 py-2 bg-secondary text-white text-center">Datos del Proveedor</h4>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Foto de perfil</b>:</label>
-                    <!---- AGREGAR IMG ---->                                  
-
+                    <img src="../../img/usuarios/<?php echo $datosServicio['imgUsuario'];?>" class="card-img-top img-fluid imagen-servicios-usuario" alt="imgUsuario">                                 
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $datosServicio['nombreCompleto']; ?>" style="width: 310px;">

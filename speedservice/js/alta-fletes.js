@@ -73,25 +73,30 @@ btnSiguiente.addEventListener('click', (e) => {
             
             banderaForm = false;
         
-            }
-        if(arrayInputs[2].value >2000|arrayInputs[2].value < 1){
-            arrayInputs[2].style.border = "3px solid red";
-            if(!arrayInputs[2].nextElementSibling){
-                let msj = document.createElement('p');
-                msj.textContent = "El alcance debe ser mayor a 0 y menor a 2000km.";
-                msj.style.backgroundColor = 'red';
-                arrayInputs[2].parentNode.append(msj);
-            }
-            banderaForm = false;
         }else{
-            if(arrayInputs[2].nextElementSibling){
-                arrayInputs[2].nextElementSibling.remove();
+            if(arrayInputs[1].nextElementSibling){
+                arrayInputs[1].nextElementSibling.remove();
                 banderaForm = true;
             }
+        }
+        // if(arrayInputs[2].value >2000|arrayInputs[2].value < 1){
+        //     arrayInputs[2].style.border = "3px solid red";
+        //     if(!arrayInputs[2].nextElementSibling){
+        //         let msj = document.createElement('p');
+        //         msj.textContent = "El alcance debe ser mayor a 0 y menor a 2000km.";
+        //         msj.style.backgroundColor = 'red';
+        //         arrayInputs[2].parentNode.append(msj);
+        //     }
+        //     banderaForm = false;
+        // }else{
+        //     if(arrayInputs[2].nextElementSibling){
+        //         arrayInputs[2].nextElementSibling.remove();
+        //         banderaForm = true;
+        //     }
 
             
         
-            }
+        //     }
         if(banderaForm == true)
            {
                 let datosServicio = document.querySelector('#datosServicio');
@@ -118,58 +123,58 @@ btnSiguiente.addEventListener('click', (e) => {
                     /** Patentes validas : aaa3333,aaa333,aa333a,aa333aa */
                     
                 e.preventDefault();
-                    if( !regexPatente.test(arrayInputs[3].value)){
-                        arrayInputs[3].style.border = "3px solid red";
-                        if(!arrayInputs[3].nextElementSibling){
+                    if( !regexPatente.test(arrayInputs[2].value)){
+                        arrayInputs[2].style.border = "3px solid red";
+                        if(!arrayInputs[2].nextElementSibling){
                             let msj = document.createElement('p');
                             msj.textContent = "La patente ingresada no es válida.";
                             msj.style.backgroundColor = 'red';
-                            arrayInputs[3].parentNode.append(msj);
+                            arrayInputs[2].parentNode.append(msj);
                         }
                         banderaForm = false;
                     }else{
-                        if(arrayInputs[3].nextElementSibling){
-                            arrayInputs[3].nextElementSibling.remove();
+                        if(arrayInputs[2].nextElementSibling){
+                            arrayInputs[2].nextElementSibling.remove();
                             banderaForm = true;
                         }
                         
                     }
-                    if(arrayInputs[4].value == ""){
-                            arrayInputs[4].style.border = "3px solid red";
+                    if(arrayInputs[3].value == ""){
+                            arrayInputs[3].style.border = "3px solid red";
                             
                             banderaForm = false;
                         
                     }
-                    if(!validar(arrayInputs[5].value,arrayInputs[5].files[0].size)){
-                            arrayInputs[5].style.border = "3px solid red";
+                    if(!validar(arrayInputs[4].value,arrayInputs[5].files[0].size)){
+                            arrayInputs[4].style.border = "3px solid red";
                             
-                            if(!arrayInputs[5].nextElementSibling){
+                            if(!arrayInputs[4].nextElementSibling){
                                 let msj = document.createElement('p');
                                 msj.textContent = "El formato o tamaño de la imagen es incorrecto.";
                                 msj.style.backgroundColor = 'red';
-                                arrayInputs[5].parentNode.append(msj);
+                                arrayInputs[4].parentNode.append(msj);
                             }
                             banderaForm = false;
                         }else{
-                            if(arrayInputs[5].nextElementSibling){
-                                arrayInputs[5].nextElementSibling.remove();
+                            if(arrayInputs[4].nextElementSibling){
+                                arrayInputs[4].nextElementSibling.remove();
                                 banderaForm = true;
                             }
                         
                     }
-                    if(!validar(arrayInputs[6].value)){
-                        arrayInputs[6].style.border = "3px solid red";
+                    if(!validar(arrayInputs[5].value)){
+                        arrayInputs[5].style.border = "3px solid red";
                         
-                        if(!arrayInputs[6].nextElementSibling){
+                        if(!arrayInputs[5].nextElementSibling){
                             let msj = document.createElement('p');
                             msj.textContent = "El formato o tamaño de la imagen es incorrecto.";
                             msj.style.backgroundColor = 'red';
-                            arrayInputs[6].parentNode.append(msj);
+                            arrayInputs[5].parentNode.append(msj);
                         }
                         banderaForm = false;
                     }else{
-                        if(arrayInputs[6].nextElementSibling){
-                            arrayInputs[6].nextElementSibling.remove();
+                        if(arrayInputs[5].nextElementSibling){
+                            arrayInputs[5].nextElementSibling.remove();
                             banderaForm = true;
                         }
                     
