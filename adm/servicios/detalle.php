@@ -9,17 +9,19 @@ $pagina = 'listado-servicios';
 require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
 
-
+if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['id'])){
+    header('Location:../index.php');
+}
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     $idServicio = $_GET['id'];
-    $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
+    $stmt = $conexion->prepare("SELECT idServicio, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, estadoServicio, patente, imgUsuario, img_seguro, img_vtv, capacidad, tipo, nombreCompleto, telefono, correo, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = servicios.idEstadoServicio INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
     $stmt->execute(array(':idServicio' => $idServicio));
     $datosServicio = $stmt->fetch();
 
     $nombreServicio = $datosServicio['nombreServicio'];
-
-    $fechaSolicitudServicio = $datosServicio['fechaAltaServicio'];
-    $fechaSolicitudNueva = date("d-m-Y", strtotime($fechaSolicitudServicio));
+    $categoria = $datosServicio['idCategoria']; 
+    $descripcionServicio = $datosServicio['descripcionServicio'];
+    $tipoVehiculoServicio = $datosServicio['tipo'];
 
     /* ACCEDER A LAS IMÁGENES DEL VEHÍCULO */
     $stmt = $conexion->prepare('SELECT * FROM fotos_vehiculo WHERE idVehiculo = :idVehiculo');
@@ -29,11 +31,13 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $idServicio = $_POST['idServicio'];
-    
     $nombreServicio = $_POST['nombreServicio'];
-
     $descripcionServicio = $_POST['descripcionServicio'];
     $idEstado = $_POST['estadoServicio'];
+    $categoria = $_POST['categoriaServicio'];
+    $descripcionServicio = $_POST['descripcionServicio'];
+    $tipoVehiculoServicio = $_POST['tipoVehiculoServicio'];
+
 
     if(empty($idServicio) || empty($nombreServicio) || empty($descripcionServicio) || empty($idEstado)){
         $notificacion = "Error: no puede dejar campos vacíos.";
@@ -73,8 +77,7 @@ require_once('../../includes/header.php');
                 <h4 class="mb-4 py-2 bg-secondary text-white text-center">Datos del Proveedor</h4>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Foto de perfil</b>:</label>
-                    <!---- AGREGAR IMG ---->                                  
-
+                    <img src="../../img/usuarios/<?php echo $datosServicio['imgUsuario'];?>" class="card-img-top img-fluid imagen-servicios-usuario" alt="imgUsuario">                                 
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $datosServicio['nombreCompleto']; ?>" style="width: 310px;">
@@ -90,7 +93,7 @@ require_once('../../includes/header.php');
             <div class="col-12 col-md-6">
                 <h4 class="mb-4 py-2 bg-secondary text-white text-center">Datos del Servicio</h4>
                 <div class="mb-2">
-                    <label for="" class="text-dark me-2"><b>Fecha de solicitud</b>:</label> <input type="text" value="<?php echo $fechaSolicitudNueva; ?>">
+                    <label for="" class="text-dark me-2"><b>Fecha de solicitud</b>:</label> <input type="text" value="<?php echo $fechaSolicitud = date("d-m-Y", strtotime($datosServicio['fechaAltaServicio'])); ?>">
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Nombre</b>:</label> <input type="text" value="<?php echo $nombreServicio; ?>" name="nombreServicio" class="form-control">
@@ -100,17 +103,17 @@ require_once('../../includes/header.php');
                     <label for="" class="text-dark"><b>Categoría</b>:</label>
                     <div class="d-flex">                  
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="radio" name="categoriaServicio" id="flete" <?php echo ($datosServicio['idCategoria'] == 1) ? 'checked' : '' ?> value="1">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="flete" <?php echo ($categoria == 1) ? 'checked' : '' ?> value="1">
                             <label class="form-check-label text-black" for="flete"> Flete </label>
                         </div>
                         
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="radio" name="categoriaServicio" id="remis" <?php echo ($datosServicio['idCategoria'] == 3) ? 'checked' : '' ?> value="3">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="remis" <?php echo ($categoria == 3) ? 'checked' : '' ?> value="3">
                             <label class="form-check-label text-black" for="remis"> Remis </label>
                         </div>
 
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="radio" name="categoriaServicio" id="mandado" <?php echo ($datosServicio['idCategoria'] == 2) ? 'checked' : '' ?> value="2">
+                            <input class="form-check-input" type="radio" name="categoriaServicio" id="mandado" <?php echo ($categoria == 2) ? 'checked' : '' ?> value="2">
                             <label class="form-check-label text-black" for="mandado"> Mandado </label>
                         </div>                      
                     </div>
@@ -120,7 +123,7 @@ require_once('../../includes/header.php');
                     <label for="" class="text-dark"><b>Alcance (en km.)</b>:</label> <input type="text" value="<?php echo $datosServicio['alcance']; ?>">
                 </div>
                 <div class="mb-2">
-                    <label for="" class="text-dark"><b>Descripción</b>:</label> <textarea value="<?php echo $datosServicio['descripcionServicio']; ?>" class="form-control" name="descripcionServicio"><?php echo $datosServicio['descripcionServicio']; ?></textarea>
+                    <label for="" class="text-dark"><b>Descripción</b>:</label> <textarea value="<?php echo $datosServicio['descripcionServicio']; ?>" class="form-control" name="descripcionServicio"><?php echo $descripcionServicio; ?></textarea>
                 </div>
             </div>
 
@@ -130,7 +133,7 @@ require_once('../../includes/header.php');
                     <label for="" class="text-dark"><b>Patente</b>:</label> <input type="text" value="<?php echo $datosServicio['patente']; ?>">
                 </div>
                 <div class="mb-2">
-                    <label for="" class="text-dark"><b>Tipo</b>:</label> <input type="text" value="<?php echo $datosServicio['tipo']; ?>">
+                    <label for="" class="text-dark"><b>Tipo</b>:</label> <input type="text" value="<?php echo $tipoVehiculoServicio; ?>"name="tipoVehiculoServicio" >
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Imagen del seguro</b>:</label>
