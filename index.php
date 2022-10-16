@@ -44,7 +44,7 @@ require_once('includes/header.php');
 
                   if($fila['idCategoria'] == 1){
                     echo '
-                      <a href="paginas/serviciosFlete.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      <a href="paginas/serviciosFlete.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más</a>
                       
                       </div>
                       </div>
@@ -52,7 +52,7 @@ require_once('includes/header.php');
                   '; }
                   if($fila['idCategoria'] == 2){
                     echo '
-                      <a href="paginas/serviciosMandado.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      <a href="paginas/serviciosMandado.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más</a>
                       
                       </div>
                       </div>
@@ -60,7 +60,7 @@ require_once('includes/header.php');
                   '; }
                   if($fila['idCategoria'] == 3){
                     echo '
-                      <a href="paginas/serviciosRemis.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más...</a>
+                      <a href="paginas/serviciosRemis.php" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Ver más</a>
                       
                       </div>
                       </div>
@@ -96,8 +96,8 @@ require_once('includes/header.php');
             <i class="fa-solid fa-clock-rotate-left"></i>
           </div>
           
-          <h5 class="encabezado-info">24hs</h5>
-          <p class="descripcion-info">Solicita un servicio en cualquier momento del día y cualquier día del año.</p>
+          <h5 class="encabezado-info">24 horas</h5>
+          <p class="descripcion-info">Solicitá un servicio en cualquier momento del día y cualquier día del año.</p>
         </div>
 
         <div class="col-md-4 text-center info-servicio">
@@ -106,7 +106,7 @@ require_once('includes/header.php');
           </div>
           
           <h5 class="encabezado-info">Transparencia</h5>
-          <p class="descripcion-info">Observa el detalle de tu pedido. Compara viajes. <br>No te dejes engañar.</p>
+          <p class="descripcion-info">Observá el detalle de tu pedido. Compará viajes. <br>No te dejes engañar.</p>
         </div>
 
       </div>

@@ -40,11 +40,7 @@
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Nosotros</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/nosotros.php">Nosotros</a>
                   </li>
 
                   <?php if(!isset($_SESSION['idUsuario'])) : ?>

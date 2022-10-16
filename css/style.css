@@ -468,9 +468,14 @@ footer .copyright{
     color: white;
 }
 .detalles-servicio .imagen-servicios-usuario{
-    height: 200px;
-    width: 200px;
+    height: 180px;
+    width: 180px;
     border-radius: 50%;
+}
+.detalles-servicio .col-conductor{
+    background-color: #fa004f2a;
+    align-items: center;
+    border-style: dotted;
 }
 .img-detalle-servicio{
     max-width: 100%;
@@ -494,7 +499,7 @@ footer .copyright{
     background-size: cover;
 }
 .pagina-servicios .columna-servicios{
-    background-color: #fff;
+    background-color: white;
     padding: 1rem;
 }
 .pagina-servicios .columna-servicios .servicio-1, .pagina-servicios .columna-servicios .servicio-2{
@@ -510,4 +515,40 @@ footer .copyright{
     width: 100%;
     height: 120px;
     object-fit: cover;
+}
+.pagina-servicios .buscador{
+    background-color: rgb(245, 245, 245);
+    height: 40px;
+    border-radius: 25px 0px 0px 25px;
+    width: 350px;
+    color: black;
+    border: none;
+    font-style: italic;
+}
+.pagina-servicios .boton-buscador-buscar{
+    border-radius: 0px 25px 25px 0px;
+    height: 40px;
+    width: 70px;
+    background-color: #fa0050;
+    color: white;
+    border: none;
+}
+  
+/* PÁGINA NOSOTROS */
+.pagina-nosotros{
+    padding-top: 6rem!important;
+    background-color: #f2f2f2;
+}
+.pagina-nosotros h2{
+    color: #fa0050;
+}
+.pagina-nosotros .imagen-nosotros{
+    width: 250px;
+    height: 250px;
+    text-align: center;
+    border-radius: 25px;
+}
+.pagina-nosotros .fondo-fila-nosotros{
+    background-color: #fa004f2a;
+    border-radius: 30%;
 }
