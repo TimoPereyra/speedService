@@ -23,7 +23,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])){
     $descripcionServicio = $datosServicio['descripcionServicio'];
     $tipoVehiculoServicio = $datosServicio['tipo'];
 
-
     /* ACCEDER A LAS IMÁGENES DEL VEHÍCULO */
     $stmt = $conexion->prepare('SELECT * FROM fotos_vehiculo WHERE idVehiculo = :idVehiculo');
     $stmt->execute(array(':idVehiculo' => $datosServicio['idVehiculo']));

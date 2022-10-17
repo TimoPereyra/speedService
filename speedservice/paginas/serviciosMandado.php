@@ -33,7 +33,6 @@ require_once('../includes/header.php');
                                         <h5 class="card-title">'.ucfirst($fila['nombreServicio']).'</h5>
                                         
                                         <a href="detalleServicio.php?idServicio='.$fila['idServicio'].'" class="btn d-grid gap-2 col-10 mx-auto boton-servicios">Detalle</a>
-
                                         
                                         </div>
                                     </div>

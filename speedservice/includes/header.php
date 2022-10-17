@@ -51,7 +51,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/ingresar.php">Ingresar</a>
                     </li>
-                  <?php else: ?>
+                  <?php else:  ?>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="img-avatar">
@@ -63,7 +63,9 @@
                         <?php if($_SESSION['idRol'] == 1 ) : ?>
                           <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php">Ser proveedor</a></li>
                         <?php endif; ?>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php">Notificaciones <span class="badge bg-secondary">4</span></a></li>
+                        <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>
                       </ul>

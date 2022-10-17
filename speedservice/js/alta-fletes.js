@@ -1,5 +1,6 @@
 let btnSiguiente = document.querySelector('#btnSiguiente');
 let btnEnviar = document.querySelector('#btnEnviar');
+
 function validar(archivo,tam) {
     // Recibir nombre de archivo
      // Obtener extensión del archivo
