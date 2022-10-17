@@ -131,13 +131,30 @@ require_once('../includes/header.php');
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Descripción: </b><i><?php echo $datosServicio['descripcionServicio'];?></i></p>               
                 </div>
             </div>
-
             
         </form> 
-        <div class="mt-3 col-12 col-md-12">   
-            <button type="submit" class="btn boton-servicios d-grid gap-2 col-6 mx-auto"> Solicitar servicio </button>
-        </div>    
+           
     </div>
+
+    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
+    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
+    <input type="hidden" name="precioServicio" value="<?php echo (isset($precioServicio)) ? $precioServicio : '' ?>">
+    <input type="hidden" name="idProveedor" value="<?php echo (isset($idProveedor)) ? $idProveedor : '' ?>">
+
+    <div class="mt-3 col-12 col-md-6 fondo-formulario"> 
+        <label for="" class="text-dark"><b>Fecha:</b></label>
+        <input type="date" class="form-control" name="fecha">
+        <label for="" class="text-dark"><b>Hora:</b></label>
+        <input type="text" class="form-control" name="hora">
+    </div>
+    <div class="mt-3 col-8 col-md-6 fondo-formulario">
+        <label for="" class="text-dark"><b>Descripción:</b></label>
+        <textarea id="" cols="30" rows="10" class="form-control" name="descripcion"></textarea>
+    </div>
+               
+    <div class="mt-3 col-12 col-md-12">   
+            <button type="submit" class="btn boton-servicios d-grid gap-2 col-4 mx-auto"> Solicitar servicio </button>
+    </div> 
 </section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

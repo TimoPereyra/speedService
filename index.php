@@ -20,7 +20,23 @@ require_once('includes/header.php');
       <h1>SpeedService</h1>
       <p><i>El sitio que te permite generar ganancias al volante y pedir un servicio ahora. </i></p>
       <div class="d-flex justify-content-center align-items-center">
+        <?php if(isset ($_SESSION['idRol'])) : ?>
+          <div class="dropdown">
+              <button class="btn boton-servicios dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Servicios
+              </button>
+              <ul class="dropdown-menu boton-desplegable-servicios" aria-labelledby="dropdownMenu2">
+                <li class="m-1 bg-none"><a href="<?php echo RUTARAIZ; ?>/paginas/serviciosFlete.php"><i class="fa-solid fa-arrow-right"></i> Flete </a></li>
+                <li class="m-1 bg-none"><a href="<?php echo RUTARAIZ; ?>/paginas/serviciosRemis.php"><i class="fa-solid fa-arrow-right"></i> Remis </a></li>
+                <li class="m-1 bg-none"><a href="<?php echo RUTARAIZ; ?>/paginas/serviciosMandado.php"><i class="fa-solid fa-arrow-right"></i> Mandado </a></li>
+                
+              </ul>
+        </div>
+        <?php endif;  ?>
+        <?php if(!isset ($_SESSION['idRol'])) : ?>
         <a href="paginas/registro.php" class="me-4">Registrarse</a>
+
+        <?php endif;  ?>
       </div>
     </div>
   </section>

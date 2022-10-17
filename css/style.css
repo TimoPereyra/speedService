@@ -130,6 +130,13 @@ header .cta:hover{
 .seccion-bienvenida .contenedor a:hover{
     transform:scale(1.1);
 }
+.seccion-bienvenida .boton-desplegable-servicios{
+    background: none;
+}
+.seccion-bienvenida .boton-servicios:hover{
+    background-color: #f2f2f2c0!important;
+    color: black;
+}
 
 /* SECCION SERVICIOS */
 .seccion-servicios h2{
@@ -491,6 +498,10 @@ footer .copyright{
 .detalles-servicio .icono-viñeta{
     color: #fa0050;
 }
+.detalles-servicio .fondo-formulario{
+    border-radius: 0px;
+    background-color: #979697;
+}
 
 /* PAGINA PARA LOS TRES SERVICIOS */
 .pagina-servicios{
@@ -546,9 +557,28 @@ footer .copyright{
     width: 250px;
     height: 250px;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 40px;
 }
 .pagina-nosotros .fondo-fila-nosotros{
-    background-color: #fa004f2a;
-    border-radius: 30%;
+    border-style: none;
+    border-radius: 30px;
+}
+.pagina-nosotros li{
+    font-size: medium;
+}
+.fondo-pagina-nosotros{
+    padding-top: 6rem!important;
+    background: url(../img/registrar-servicio.jpg) no-repeat center center;
+    background-size: cover;
+}
+.pagina-nosotros .nosotros-contacto{
+    background: url(../img/nosotros_contacto.jpg) no-repeat center center;
+    background-size: cover;
+    border-radius: 25px;
+}
+.pagina-nosotros .icono-linkedin{
+    padding: 0.4rem 0.4rem;
+    background-color: #fa0050;
+    color: #fff;
+    border-radius: 50%;
 }
