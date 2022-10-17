@@ -47,7 +47,7 @@ require_once('../includes/header.php');
                         foreach($servicios as $fila){
                         
                             echo '
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <div class="card">
                                 <img src="../img/vehiculos/'.$fila['urlFoto'].'" class="card-img-top img-fluid imagen-servicios-vehiculo" alt="imgVehiculo">
                                     <div class="text-center">

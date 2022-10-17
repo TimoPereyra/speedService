@@ -480,7 +480,7 @@ footer .copyright{
     border-radius: 50%;
 }
 .detalles-servicio .col-conductor{
-    background-color: #fa004f2a;
+    background-color: rgba(241, 224, 202, 0.774);
     align-items: center;
     border-style: dotted;
 }
