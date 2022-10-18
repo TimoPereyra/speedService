@@ -11,8 +11,9 @@ if(empty($busqueda)){
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
-    $porPagina = 2; 
-echo($totalRegistros);
+    $porPagina = 1; 
+   
+
      if(empty($_GET['pagina'])){
          $pagina = 1; 
          $desde = 0;
@@ -21,7 +22,7 @@ echo($totalRegistros);
          $desde = ($pagina-1) * $porPagina; 
      }
 
-    
+     
     $totalPaginas = ceil($totalRegistros / $porPagina);
    //No anda la pasada por parametros del limit
      $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio,fechaAltaServicio FROM servicios
@@ -101,29 +102,30 @@ require_once('../includes/header.php');
                     }
                         ?>
                         <?php if (!empty($servicios)|| $pagina !=1):?>
-                        <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item disabled">
-                                            <?php 
-                                        if($pagina != 1){
-                                    ?>
-                                        
-                                            <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span>Anterior</a></li>
-                                    <?php                  
-                                        }
+                            <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item disabled">
+                                        <?php 
+                                    if($pagina != 1){
+                                ?>
                                     
-                                        for ($i=1; $i <= $porPagina; $i++){
-                                        
-                                            echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
-                                        
-                                        }
-
-                                        if($pagina < $totalPaginas){
-                                    ?>
-                                            <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
-                                    <?php } ?>
-                                        </ul>
-                        </nav>
+                                        <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span>Anterior</a></li>
+                                <?php                  
+                                    }
+                                
+                                    for ($i=1; $i <= $totalPaginas; $i++){
+                                    
+                                        echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
+                                    
+                                    }
+                                   
+                                    
+                                    if($pagina < $totalPaginas){
+                                ?>
+                                                <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
+                                        <?php } ?>
+                                            </ul>
+                            </nav>
                         <?php endif;  ?>
                     </div>
                 </div>
