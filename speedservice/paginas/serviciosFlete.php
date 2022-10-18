@@ -11,12 +11,12 @@ if(empty($busqueda)){
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
-    $porPagina = 2; 
+    $porPagina = 1; 
    
 
      if(empty($_GET['pagina'])){
          $pagina = 1; 
-         $desde = 1;
+         $desde = 0;
      }else{
          $pagina = $_GET['pagina'];
          $desde = ($pagina-1) * $porPagina; 
@@ -26,7 +26,7 @@ if(empty($busqueda)){
     $totalPaginas = ceil($totalRegistros / $porPagina);
  
    //No anda la pasada por parametros del limit
-     $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE idCategoria = 1 GROUP BY idServicio LIMIT 0, 2;");
+     $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE idCategoria = 1 GROUP BY idServicio LIMIT $desde, $porPagina;");
      
     $query->execute();
      $servicios = $query->fetchAll();
@@ -115,14 +115,14 @@ require_once('../includes/header.php');
             <?php                  
                 }
             
-                for ($i=1; $i <= $porPagina; $i++){
+                for ($i=1; $i <= $totalPaginas; $i++){
                    
                     echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
                   
                 }
                 echo($totalPaginas);
                 
-                if($pagina != $totalPaginas){
+                if($pagina < $totalPaginas){
             ?>
                             <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
                     <?php } ?>

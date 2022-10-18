@@ -16,7 +16,7 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
 
      if(empty($_GET['pagina'])){
          $pagina = 1; 
-         $desde = 1;
+         $desde = 0;
      }else{
          $pagina = $_GET['pagina'];
          $desde = ($pagina-1) * $porPagina; 
@@ -110,14 +110,14 @@ require_once('../includes/header.php');
             <?php                  
                 }
             
-                for ($i=1; $i <= $porPagina; $i++){
+                for ($i=1; $i <= $totalPaginas; $i++){
                    
                     echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
                   
                 }
 
                 
-                if($pagina != $totalPaginas){
+                if($pagina < $totalPaginas){
                     ?>
                             <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
                     <?php } ?>
