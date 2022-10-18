@@ -35,16 +35,17 @@
                     <a class="nav-link <?php echo ($pagina == 'inicio') ? 'active' : ''; ?>" aria-current="page" href="<?php echo RUTARAIZ; ?>">Inicio</a>
                   </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link <?php echo ($pagina == 'servicios') ? 'active' : ''; ?>" href="<?php echo RUTARAIZ; ?>/paginas/servicios.php">Servicios</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosFlete.php"><i class="fa-solid fa-arrow-right"></i> Fletes</a></li>
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosRemis.php"><i class="fa-solid fa-arrow-right"></i> Remis</a></li>
+                      <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/serviciosMandado.php"><i class="fa-solid fa-arrow-right"></i> Mandados</a></li>
+                    </ul>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Nosotros</a>
-                  </li>
-                  
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="<?php echo RUTARAIZ; ?>/paginas/nosotros.php">Nosotros</a>
                   </li>
 
                   <?php if(!isset($_SESSION['idUsuario'])) : ?>

@@ -52,19 +52,19 @@ require_once('../includes/header.php');
             <form action="verMas.php" method="POST" class="col-md-6 mx-auto fondo-formulario" enctype="multipart/form-data">
                 <input type="hidden" name="idSolicitud" value="<?php echo (isset($solicitud)) ? $solicitud['idSolicitud'] : '' ?>">
                 <div class="mb-3">
-                    <label for="fecha">Fecha del Pedido:</label>
+                    <label for="fecha">Fecha del pedido: </label>
                     <input class="form-control" name="fecha" id="fecha" rows="5"value="<?php echo (isset($solicitud)) ? trim($solicitud['fecha']) : '' ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="hora">Hora del Pedido:</label>
+                    <label for="hora">Hora del pedido: </label>
                     <input class="form-control" name="hora" id="hora" rows="5"value="<?php echo (isset($solicitud)) ? trim($solicitud['hora']) : '' ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="descripcion">Descripcion del Pedido:</label>
+                    <label for="descripcion">Descripción del pedido: </label>
                     <textarea class="form-control" name="descripcion" id="descripcion" rows="5"><?php echo (isset($solicitud)) ? trim($solicitud['descripcion']) : '' ?></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="precio">Precio:</label>
+                    <label for="precio">Precio: </label>
                     <input class="form-control" name="precio" id="precio" rows="5"value="<?php echo (isset($solicitud)) ? trim($solicitud['precioServicio']) : '' ?>">
                 </div>
                 <div class="mb-2">
@@ -77,12 +77,12 @@ require_once('../includes/header.php');
                         
                         <div class="form-check d-flex align-items-center">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 3) ? 'checked' : '' ?> value="3">
-                            <label class="form-check-label text-black" for="remis"> Aceptar </label>
+                            <label class="form-check-label text-black" for="remis"> Aceptado </label>
                         </div>
 
                         <div class="form-check d-flex align-items-center">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 2) ? 'checked' : '' ?> value="2">
-                            <label class="form-check-label text-black" for="mandado"> Cancelar </label>
+                            <label class="form-check-label text-black" for="mandado"> Cancelado </label>
                         </div>                      
                     </div>
                 </div>

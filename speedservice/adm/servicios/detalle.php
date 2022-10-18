@@ -192,7 +192,7 @@ require_once('../../includes/header.php');
                    
                 </div>
             </div>
-            <button type="submit" class="btn col-md-4 mx-auto mt-4 boton-servicios"> Actualizar Datos </button>
+            <button type="submit" class="btn col-md-4 mx-auto mt-4 boton-servicios"> Actualizar datos </button>
         </form>   
     </div>
 </section>
