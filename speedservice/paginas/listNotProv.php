@@ -1,14 +1,18 @@
 <?php
 session_start();
 
-
+if(!isset($_SESSION['idRol'])){
+    header('Location:../index.php');
+}
 
 $pagina = 'listado-solicitudes';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
 
 if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
-    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio WHERE  1");
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 1;");
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
@@ -25,7 +29,10 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
     
     $totalPaginas = ceil($totalRegistros / $porPagina);
    //No anda la pasada por parametros del limit
-     $query = $conexion->prepare("SELECT * FROM solicitud_servicio WHERE 1 LIMIT $desde, $porPagina");
+     $query = $conexion->prepare("SELECT * FROM solicitud_servicio 
+     INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+     WHERE notificaciones.visto = 1
+     LIMIT $desde, $porPagina");
     $query->execute();
      $solicitudes = $query->fetchAll();
     
@@ -35,7 +42,7 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
 if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==2){
     $stmt = $conexion->prepare("SELECT * FROM solicitud_servicio
      INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
-     WHERE notificaciones.visto = 1
+     WHERE notificaciones.visto = 0
      ORDER BY fecha ASC;");
     $stmt->execute();
     $solicitudes = $stmt->fetchAll();
@@ -115,10 +122,10 @@ require_once('../includes/header.php');
                     echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
                   
                 }
-
+               
                 
                 if($pagina < $totalPaginas){
-                    ?>
+            ?>
                             <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
                     <?php } ?>
                         </ul>

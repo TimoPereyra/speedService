@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION['idUsuario'])){
+    header('Location:../index.php');
+}
 $pagina = 'servicios-mandado';
 require_once('../includes/config.php');
 

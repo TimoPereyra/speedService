@@ -16,6 +16,28 @@
     <title>SpeedService</title>
 </head>
 <body>
+  <?php 
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 1)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 1;");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalRegistro'];
+  }
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 2)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalRegistro'];
+  }
+  ?>
     
     <!-- ENCABEZADO -->
     <header>
@@ -65,7 +87,7 @@
                           <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php">Ser proveedor</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php">Notificaciones <span class="badge bg-secondary">4</span></a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php">Noti <span class="badge bg-secondary"><?php echo (isset($notificaciones))?$notificaciones : 0; ?></span></a></li>
                         <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION['idRol'])){
+    echo($_SESSION['idRol']);
+    header('Location:../index.php');
+}
 $pagina = 'servicios-flete';
 require_once('../includes/config.php');
 
@@ -120,7 +125,7 @@ require_once('../includes/header.php');
                     echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
                   
                 }
-                echo($totalPaginas);
+                
                 
                 if($pagina < $totalPaginas){
             ?>

@@ -1,4 +1,6 @@
 <?php 
+session_start();
+echo($_SESSION['idRol']);
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $img = $_FILES['imgPerfil']['name'];
