@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $stmt = $conexion->prepare("INSERT INTO notificaciones(descripcion, idUsuarioNotificado, idSolicitud, idProveedor, visto) VALUES (:descripcionNotificacion, :idClienteNotificado, :idSolicitud, :idProveedorNotificado, 0)");
 
             $stmt->execute(array(':descripcionNotificacion' => $descripcion, ':idClienteNotificado' => $idCliente, ':idSolicitud' => $idSolicitud, ':idProveedorNotificado' => $idProveedor));
-            
+            header('Location:../index.php');
 
         }
     }
@@ -148,11 +148,11 @@ require_once('../includes/header.php');
         <input type="text" class="form-control" name="hora">
     </div>
     <div class="mt-3 col-8 col-md-6 fondo-formulario">
-        <label for="" class="text-dark"><b>Descripción:</b></label>
+        <label for="" class="text-dark"><b>Descripción</b> (ej. domicilio, destino...)<b>:</b></label>
         <textarea id="" cols="30" rows="10" class="form-control" name="descripcion"></textarea>
     </div>
                
-    <div class="mt-3 col-12 col-md-12">   
+    <div class="mt-3 col-12 col-md-12 " id="form" >   
             <button type="submit" class="btn boton-servicios d-grid gap-2 col-4 mx-auto"> Solicitar servicio </button>
     </div> 
 </section>

@@ -16,6 +16,28 @@
     <title>SpeedService</title>
 </head>
 <body>
+  <?php 
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 1)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 1;");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalRegistro'];
+  }
+  if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 2)
+  {
+    require_once('conexion.php');
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
+    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
+    WHERE notificaciones.visto = 0;");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $notificaciones = $resultado['totalRegistro'];
+  }
+  ?>
     
     <!-- ENCABEZADO -->
     <header>
@@ -57,15 +79,15 @@
                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="<?php echo RUTARAIZ.'/img/usuarios/'.$_SESSION['imgUsuario'] ?>" alt="avatar" class="img-avatar">
                       </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <?php if($_SESSION['idRol'] == 3) : ?>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/adm/panel-adm.php">Panel de control</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php">Ser proveedor</a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php">Notificaciones <span class="badge bg-secondary">4</span></a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php"><i class="fa-solid fa-bell"></i> Notificaciones <span class="badge boton-servicios"><?php echo (isset($notificaciones))?$notificaciones : 0; ?></span></a></li>
                         <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>

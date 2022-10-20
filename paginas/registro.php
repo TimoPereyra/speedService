@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             /* LISTAR USUARIO POR CORREO  */
             
-            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1)");
+            $stmt = $conexion->prepare("INSERT INTO usuarios(imgUsuario, nombreCompleto, correo, password, telefono, dni, direccion, fechaNacimiento, idRol,verificado) VALUES (:imgUsuario,:nombre,:correo,:password,:telefono,:dni,:direccion,:fecha,1,'TRUE')");
             $passHash = password_hash($_POST['pass'], PASSWORD_BCRYPT);
             $resultado = $stmt->execute(array(':imgUsuario' => $img, ':nombre' => $nombreCompleto, ':correo' => $correoCliente,':password' => $passHash,':telefono'=> $telefonoCliente, ':dni' => $dniCliente, ':direccion' => $direccionCliente, ':fecha' => $fechaNacimiento));
 
@@ -108,8 +108,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row align-items-center">
             
                 <div class="col-4">
-                    <h2 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de Chivilcoy</b></h2>
-                    <p class="text-center">Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica solo para quienes completen el proceso de registro exitosamente.</p>
+                    <h2 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la Ciudad de Chivilcoy</b></h2>
+                    <p class="text-center">Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica únicamente para aquellos que completen el proceso de registro exitosamente.</p>
                 </div>
 
                 <div class="col-8">
@@ -126,14 +126,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                     <div class="col-12 col-md-6 arregloForm">
                         <div class="mb-3">
-                            <label for="nombreProveedor">Nombre y apellido:</label>
+                            <label for="nombreProveedor">Nombre y Apellido:</label>
                             <input type="text" class="form-control" id="nombreProveedor" name="nombreCliente" required>
                             <p class="text-white bg-danger msj-error">Error: El nombre debe tener al menos 6 caracteres.</p>
                         </div>
                         <div class="mb-3">
                             <label for="imgPerfil">Imagen de perfil:</label>
                             <input type="file" class="form-control" id="imgPerfil" name="imgPerfil">
-                            <p class="text-white bg-danger msj-error">Error: debe seleccionar una imagen de perfil.</p>
+                            <p class="text-white bg-danger msj-error">Error: Debe elegir una imagen de perfil.</p>
                         </div>
                         
                         <div class="mb-3">
@@ -204,7 +204,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }else if(exitoServidor)
     {
         alert(exitoServidor); 
-        window.location.href = '/paginas/ingresar.php';
+        window.location.href = 'ingresar.php';
         
     }
 

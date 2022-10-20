@@ -5,7 +5,7 @@ if(!isset($_SESSION['idUsuario'])){
     header('Location:../index.php');
 }
 
-$pagina = 'listado-categorias';
+$pagina = 'aceptar-solicitud';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
 
@@ -17,13 +17,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $idSolicitud = $_POST['idSolicitud'];
 
     if(empty($idSolicitud)){
-        $notificacion = "Error: ID de la categoria no es valido";
+        $notificacion = "Error: el ID de la categoría no es válido.";
     }
-    $stmt = $conexion->prepare("UPDATE solicitud_servicio SET idEstado=2 WHERE solicitud_servicio.idSolicitud = :idSolicitud;");
+    $stmt = $conexion->prepare("UPDATE solicitud_servicio SET idEstado=2
+     WHERE solicitud_servicio.idSolicitud = :idSolicitud;");
     
         $resultado = $stmt->execute(array(':idSolicitud' => $idSolicitud));
 
         if($resultado){
+            $stmt = $conexion->prepare("UPDATE notificaciones SET notificaciones.visto=3
+             WHERE notificaciones.idSolicitud=:idSolicitud");
+            $stmt->execute(array(':idSolicitud' => $idSolicitud));
             header('Location:listNotProv.php');
         }
 }
@@ -31,10 +35,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 require_once('../includes/header.php');
 ?>
 
-<section class="alta-categorias">
+<section class="aceptar-solicitud">
     <div class="container py-5">
 
-        <h1 class="text-center">Aceptar solicitud</h1>
+        <h1 class="text-center text-white">Aceptar solicitud</h1>
 
         <div class="row py-4">
             <form action="aceptarSoli.php" method="POST" class="col-md-6 mx-auto form-eliminar">

@@ -149,7 +149,7 @@ header .cta:hover{
     color:#fff;
 }
 
-.seccion-servicios .imagen-servicios, .cardProvedor .imagen-servicios{
+.seccion-servicios .imagen-servicios, .card-proveedor .imagen-servicios{
     width: auto;
     height: 13rem;
     object-fit: cover;
@@ -293,13 +293,13 @@ footer .copyright{
     transform:scale(1.1);
     color: white;
 }
-.alta-categorias{
+.alta-categorias, .aceptar-solicitud, .modificar-solicitud{
     padding-top: 5rem;
     min-height: 70vh;
     background: url(../img/nueva_categoria.jpg) no-repeat center center;
     background-size: cover;
 }
-.alta-categorias h1, label{
+.alta-categorias h1, .modificar-solicitud h1, label{
     color: #f2f2f2;
 }
 .alta-categorias .imagen-servicios-usuario{
@@ -367,7 +367,7 @@ footer .copyright{
 }
 
 /* PAGINA ELEGIR PROVEEDOR */
-.cardProvedor{
+.card-proveedor{
     padding-top: 4.5rem!important;
     min-height: 80vh;
     display: flex;
@@ -568,12 +568,11 @@ footer .copyright{
 }
 .fondo-pagina-nosotros{
     padding-top: 6rem!important;
-    background: url(../img/registrar-servicio.jpg) no-repeat center center;
+    background: url(../img/fondo3.jpg) no-repeat center center;
     background-size: cover;
 }
 .pagina-nosotros .nosotros-contacto{
-    background: url(../img/nosotros_contacto.jpg) no-repeat center center;
-    background-size: cover;
+    background-color: rgba(241, 224, 202, 0.774);
     border-radius: 25px;
 }
 .pagina-nosotros .icono-linkedin{
@@ -581,4 +580,11 @@ footer .copyright{
     background-color: #fa0050;
     color: #fff;
     border-radius: 50%;
+}
+
+/* PÁGINA ACEPTAR SOLICITUD */
+.aceptar-solicitud .boton-eliminar-categoria:hover{
+    background-color: rgb(88, 161, 20)!important;
+    color: #f2f2f2;
+    transform: scale(1.1);
 }
