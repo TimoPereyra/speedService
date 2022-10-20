@@ -11,7 +11,7 @@ require_once('../includes/conexion.php');
 $busqueda = isset ($_REQUEST['busqueda']) ? $_REQUEST['busqueda'] : '' ;
 $errorBusqueda = false;
 if(empty($busqueda)){
-    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios WHERE idCategoria = 2");
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios WHERE idCategoria = 2 AND idEstadoServicio=2 ");
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
@@ -33,7 +33,7 @@ if(empty($busqueda)){
      INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario
      INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo
      INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo
-     WHERE idCategoria = 2
+     WHERE idCategoria = 2 AND idEstadoServicio=2 
      GROUP BY idServicio
      ORDER BY fechaAltaServicio ASC
      LIMIT $desde, $porPagina;");
@@ -44,7 +44,7 @@ if(empty($busqueda)){
     
     
 }else{
-    $stmt = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE nombreServicio LIKE :busqueda AND idCategoria = 2 GROUP BY idServicio;");
+    $stmt = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE nombreServicio LIKE :busqueda AND idCategoria = 2 AND idEstadoServicio=2  GROUP BY idServicio;");
     $stmt->execute(array(':busqueda' => '%'.$busqueda.'%'));
     $servicios = $stmt->fetchAll();
     $errorBusqueda = empty($servicios) ? true : false ;
@@ -85,7 +85,7 @@ require_once('../includes/header.php');
                                     <div class="card-body tarjeta-servicio">
                                         <h5 class="card-title">'.ucfirst($fila['nombreServicio']).'</h5>
                                         <div class="d-grid gap-2 d-md-block text-center">
-                                            <a href="#" class="ov-btn-slide-left">Solicitar servicio</a>    
+                                            <a href="detalleServicio.php?idServicio='.$fila['idServicio'].'#form"  class="ov-btn-slide-left">Solicitar servicio</a>    
                                             <a href="detalleServicio.php?idServicio='.$fila['idServicio'].'" class="btn boton-servicios2">Detalle</a>
                                         </div>
                                     </div>

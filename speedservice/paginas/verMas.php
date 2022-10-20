@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if($resultado){
             $stmt = $conexion->prepare("UPDATE notificaciones SET descripcion=:descripcion, visto=1 WHERE notificaciones.idSolicitud=:idSolicitud");
             $stmt->execute(array(':descripcion'=>$descripcion,':idSolicitud' => $idSolicitud));
+            header('Location:../index.php');
         }
     
         
@@ -76,12 +77,12 @@ require_once('../includes/header.php');
                         </div>
                         
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 3) ? 'checked' : '' ?> value="3">
+                            <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 2) ? 'checked' : '' ?> value="2">
                             <label class="form-check-label text-black" for="remis"> Aceptado </label>
                         </div>
 
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 2) ? 'checked' : '' ?> value="2">
+                            <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 3) ? 'checked' : '' ?> value="3">
                             <label class="form-check-label text-black" for="mandado"> Cancelado </label>
                         </div>                      
                     </div>

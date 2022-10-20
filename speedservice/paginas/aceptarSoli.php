@@ -19,11 +19,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty($idSolicitud)){
         $notificacion = "Error: ID de la categoria no es valido";
     }
-    $stmt = $conexion->prepare("UPDATE solicitud_servicio SET idEstado=2 WHERE solicitud_servicio.idSolicitud = :idSolicitud;");
+    $stmt = $conexion->prepare("UPDATE solicitud_servicio SET idEstado=2
+     WHERE solicitud_servicio.idSolicitud = :idSolicitud;");
     
         $resultado = $stmt->execute(array(':idSolicitud' => $idSolicitud));
 
         if($resultado){
+            $stmt = $conexion->prepare("UPDATE notificaciones SET notificaciones.visto=3
+             WHERE notificaciones.idSolicitud=:idSolicitud");
+            $stmt->execute(array(':idSolicitud' => $idSolicitud));
             header('Location:listNotProv.php');
         }
 }
