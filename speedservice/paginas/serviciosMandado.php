@@ -107,28 +107,29 @@ require_once('../includes/header.php');
                         ?>
                         <?php if (!empty($servicios)|| $pagina !=1):?>
                             <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                        <?php 
-                                    if($pagina != 1){
-                                ?>
-                                    
-                                        <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span>Anterior</a></li>
-                                <?php                  
-                                    }
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center p-3">
+                                    <li class="page-item disabled">
+                                    <?php 
+                                if($pagina != 1){
+                            ?>
                                 
-                                    for ($i=1; $i <= $totalPaginas; $i++){
-                                    
-                                        echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
-                                    
-                                    }
-                                   
-                                    
-                                    if($pagina < $totalPaginas){
-                                ?>
-                                                <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
-                                        <?php } ?>
-                                            </ul>
+                                    <li class="page-item"><a class="page-link text-black" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span><b>Anterior</b></a></li>
+                            <?php                  
+                                }
+                            
+                                for ($i=1; $i <= $totalPaginas; $i++){
+                                
+                                    echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link text-black" href="?pagina='.$i.'">'.$i.'</a></li>' ;
+                                
+                                }
+                                
+                                
+                                if($pagina < $totalPaginas){
+                            ?>
+                                            <li class="page-item"><a class="page-link text-black" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente"><b>Siguiente</b><span aria-hidden="true">&raquo;</span></li></a>
+                                    <?php } ?>
+                                        </ul>
                             </nav>
                         <?php endif;  ?>
                     </div>

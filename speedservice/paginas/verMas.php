@@ -11,9 +11,22 @@ require_once('../includes/conexion.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idSolicitud'])){
     $idSolicitud = $_GET['idSolicitud'];
+    // FILTRAR POR PROVEEDOR LOGEADO ACTUALMENTE
     $stmt = $conexion->prepare("SELECT * FROM solicitud_servicio WHERE idSolicitud = :idSolicitud;");
     $stmt->execute(array(':idSolicitud' => $idSolicitud));
     $solicitud = $stmt->fetch();
+
+/*
+    if(isset($_GET['idSolicitud'])){
+        verMas.php?idSolicitud=1
+    }else if(isset($_GET['idUsuario'])){
+        verMas.php?idUsuario=1
+    }else{
+        
+        header('location:index.php');
+    }
+*/
+
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -25,10 +38,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $estado = $_POST['estadoServicio'];
     
  
-    
-
-        $stmt = $conexion->prepare("UPDATE solicitud_servicio SET fecha=:fecha,hora=:hora,descripcion=:descripcion,precioServicio=:precio,idEstado=:idEstado WHERE solicitud_servicio.idSolicitud = $idSolicitud");
-        $resultado = $stmt->execute(array(':fecha' => $fechaSolicitud, ':hora' => $horaSolicitud, ':descripcion' => $descripcion ,':precio' => $precio,':idEstado' => $estado));
+    $stmt = $conexion->prepare("UPDATE solicitud_servicio SET fecha=:fecha,hora=:hora,descripcion=:descripcion,precioServicio=:precio,idEstado=:idEstado WHERE solicitud_servicio.idSolicitud = $idSolicitud");
+    $resultado = $stmt->execute(array(':fecha' => $fechaSolicitud, ':hora' => $horaSolicitud, ':descripcion' => $descripcion ,':precio' => $precio,':idEstado' => $estado));
 
         if($resultado){
             $stmt = $conexion->prepare("UPDATE notificaciones SET descripcion=:descripcion, visto=1 WHERE notificaciones.idSolicitud=:idSolicitud");
@@ -36,16 +47,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             header('Location:../index.php');
         }
     
-        
-  
-    
     
 }
 
 require_once('../includes/header.php');
 ?>
 
-<section class="alta-categorias">
+<section class="modificar-solicitud">
     <div class="container py-4">
         <h1 class="text-center">Modificar Solicitud</h1>
 

@@ -148,7 +148,7 @@ require_once('../includes/header.php');
         <input type="text" class="form-control" name="hora">
     </div>
     <div class="mt-3 col-8 col-md-6 fondo-formulario">
-        <label for="" class="text-dark"><b>Descripción (Ej.domicilio,destino...): </b></label>
+        <label for="" class="text-dark"><b>Descripción</b> (ej. domicilio, destino...)<b>:</b></label>
         <textarea id="" cols="30" rows="10" class="form-control" name="descripcion"></textarea>
     </div>
                

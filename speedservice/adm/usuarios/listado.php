@@ -5,7 +5,7 @@ if(!isset($_SESSION['idUsuario']) || $_SESSION['idRol'] != 3){
     header('Location:../index.php');
 }
 
-$pagina = 'listado-servicios';
+$pagina = 'listado-usuarios';
 require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
 
@@ -15,7 +15,7 @@ FROM usuarios
 ");
 
 $stmt->execute();
-$servicios = $stmt->fetchAll();
+$usuarios = $stmt->fetchAll();
 
 require_once('../../includes/header.php');
 ?>
@@ -30,15 +30,14 @@ require_once('../../includes/header.php');
                     <tr>
                         <th scope="col">Fecha de nacimiento</th>
                         <th scope="col">Nombre y apellido</th>
-                        <th scope="col">Correo</th>
-                        
+                        <th scope="col">Correo electrónico</th>
                         <th scope="col">Acción</th>
                     </tr>
                     
                 </thead>
                 <tbody>
                     <?php
-                        foreach ($servicios as $fila) {
+                        foreach ($usuarios as $fila) {
                             $originalDate = $fila['fechaNacimiento'];
                             $newDate = date("d-m-Y", strtotime($originalDate));
                             echo '

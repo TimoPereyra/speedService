@@ -12,7 +12,7 @@ require_once('../includes/conexion.php');
 $busqueda = isset ($_REQUEST['busqueda']) ? $_REQUEST['busqueda'] : '' ;
 $errorBusqueda = false;
 if(empty($busqueda)){
-    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios WHERE idCategoria = 1 AND idEstadoServicio=2 ");
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios WHERE idCategoria = 1 AND idEstadoServicio = 2 ");
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
@@ -40,7 +40,6 @@ if(empty($busqueda)){
     
 }else{
     $stmt = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE nombreServicio LIKE :busqueda AND idCategoria = 1 AND idEstadoServicio=2  GROUP BY idServicio;");
-    $stmt->execute(array(':busqueda' => '%'.$busqueda.'%'));
     $servicios = $stmt->fetchAll();
     $errorBusqueda = empty($servicios) ? true : false ;
 
@@ -85,14 +84,8 @@ require_once('../includes/header.php');
                                     </div>
                                 </div>
                             </div>
-                            ';
-                            
-                            
-                        
-                        }
-                        
-                        
-                        
+                            ';                        
+                        }                      
                     }else{
                         echo'
                         <div class="card-body tarjeta-servicio">
@@ -104,32 +97,31 @@ require_once('../includes/header.php');
                     </div>
                         ';
                     }
-                   
                         ?>
                         
                     </div>
                 </div>
                 <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center p-3">
                     <li class="page-item disabled">
                     <?php 
                 if($pagina != 1){
             ?>
                 
-                    <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span>Anterior</a></li>
+                    <li class="page-item"><a class="page-link text-black" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior"><span aria-hidden="true">&laquo;</span><b>Anterior</b></a></li>
             <?php                  
                 }
             
                 for ($i=1; $i <= $totalPaginas; $i++){
                    
-                    echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link" href="?pagina='.$i.'">'.$i.'</a></li>' ;
+                    echo ($pagina==$i) ? '<li class="page-item"><a class="page-link active" href="?pagina='.$i.'">'.$i.'</a></li>' : '<li class="page-item"><a class="page-link text-black" href="?pagina='.$i.'">'.$i.'</a></li>' ;
                   
                 }
                 
                 
                 if($pagina < $totalPaginas){
             ?>
-                            <li class="page-item"><a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">Siguiente<span aria-hidden="true">&raquo;</span></li></a>
+                            <li class="page-item"><a class="page-link text-black" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente"><b>Siguiente</b><span aria-hidden="true">&raquo;</span></li></a>
                     <?php } ?>
                         </ul>
             </nav>
