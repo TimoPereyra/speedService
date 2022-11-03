@@ -588,3 +588,19 @@ footer .copyright{
     color: #f2f2f2;
     transform: scale(1.1);
 }
+
+/* AGENDA */
+.agenda{
+    padding-top: 5rem;
+    min-height: 70vh;
+    background: url(../img/fondo3.jpg) no-repeat center center;
+    background-size: cover;
+}
+.fc-col-header-cell-cushion, .fc-daygrid-day-number{
+    color: black;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+.fc-daygrid-day-number:hover, .fc-col-header-cell-cushion:hover{
+    color: #fa0050;
+}

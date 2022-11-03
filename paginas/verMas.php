@@ -11,9 +11,22 @@ require_once('../includes/conexion.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idSolicitud'])){
     $idSolicitud = $_GET['idSolicitud'];
+    // FILTRAR POR PROVEEDOR LOGEADO ACTUALMENTE
     $stmt = $conexion->prepare("SELECT * FROM solicitud_servicio WHERE idSolicitud = :idSolicitud;");
     $stmt->execute(array(':idSolicitud' => $idSolicitud));
     $solicitud = $stmt->fetch();
+
+/*
+    if(isset($_GET['idSolicitud'])){
+        verMas.php?idSolicitud=1
+    }else if(isset($_GET['idUsuario'])){
+        verMas.php?idUsuario=1
+    }else{
+        
+        header('location:index.php');
+    }
+*/
+
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -34,9 +47,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             header('Location:../index.php');
         }
     
-        
-
-
     
 }
 
@@ -69,17 +79,17 @@ require_once('../includes/header.php');
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Estado del servicio</b>:</label>
                     <div class="d-flex">                  
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 1) ? 'checked' : '' ?> value="1">
                             <label class="form-check-label text-black" for="flete"> Pendiente </label>
                         </div>
                         
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 2) ? 'checked' : '' ?> value="2">
                             <label class="form-check-label text-black" for="remis"> Aceptado </label>
                         </div>
 
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 3) ? 'checked' : '' ?> value="3">
                             <label class="form-check-label text-black" for="mandado"> Cancelado </label>
                         </div>                      

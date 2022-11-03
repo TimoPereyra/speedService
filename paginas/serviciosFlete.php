@@ -4,7 +4,7 @@ if(!isset($_SESSION['idRol'])){
     echo($_SESSION['idRol']);
     header('Location:../index.php');
 }
-$pagina = 'servicios-flete';
+$paginaTitulo = 'servicios-flete';
 require_once('../includes/config.php');
 
 require_once('../includes/conexion.php');
@@ -19,13 +19,13 @@ if(empty($busqueda)){
     $porPagina = 2; 
    
 
-     if(empty($_GET['pagina'])){
+    if(empty($_GET['pagina'])){
          $pagina = 1; 
          $desde = 0;
-     }else{
+    }else{
          $pagina = $_GET['pagina'];
          $desde = ($pagina-1) * $porPagina; 
-     }
+    }
 
      
     $totalPaginas = ceil($totalRegistros / $porPagina);
@@ -34,7 +34,7 @@ if(empty($busqueda)){
      $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE idCategoria = 1 AND idEstadoServicio=2 GROUP BY idServicio LIMIT $desde, $porPagina;");
      
     $query->execute();
-     $servicios = $query->fetchAll();
+    $servicios = $query->fetchAll();
     
     
     

@@ -12,7 +12,8 @@
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <link rel="stylesheet" href="<?php echo RUTARAIZ; ?>/css/style.css">
     <link rel="shortcut icon" href="<?php echo RUTARAIZ; ?>/img/logo5.jpg" type="image/x-icon">
-    
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css">
     <title>SpeedService</title>
 </head>
 <body>
@@ -30,12 +31,10 @@
   if(isset($_SESSION['idRol'])&& $_SESSION['idRol'] == 2)
   {
     require_once('conexion.php');
-    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM solicitud_servicio 
-    INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
-    WHERE notificaciones.visto = 0;");
-    $stmt->execute();
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalNotificaciones FROM notificaciones WHERE visto = 0 AND idProveedor = :idProveedor");
+    $stmt->execute(array(':idProveedor' => $_SESSION['idUsuario']));
     $resultado = $stmt->fetch();
-    $notificaciones = $resultado['totalRegistro'];
+    $notificaciones = $resultado['totalNotificaciones'];
   }
   ?>
     
@@ -84,13 +83,16 @@
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/adm/panel-adm.php">Panel de control</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor</a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor </a></li>
                         <?php endif; ?>
-                        <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
+                        <?php if($_SESSION['idRol'] == 1 || $_SESSION['idRol'] == 2 ) : ?>
                           <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php"><i class="fa-solid fa-bell"></i> Notificaciones <span class="badge boton-servicios"><?php echo (isset($notificaciones))?$notificaciones : 0; ?></span></a></li>
                         <?php endif; ?>
+                        <?php if($_SESSION['idRol'] == 2 ) : ?>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/agenda.php"><i class="fa-regular fa-calendar"></i> Agenda <span class="badge boton-servicios"></span></a></li>
+                        <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión </a></li>
                       </ul>
                     </li>
 
