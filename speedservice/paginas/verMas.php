@@ -79,17 +79,17 @@ require_once('../includes/header.php');
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Estado del servicio</b>:</label>
                     <div class="d-flex">                  
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 1) ? 'checked' : '' ?> value="1">
                             <label class="form-check-label text-black" for="flete"> Pendiente </label>
                         </div>
                         
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 2) ? 'checked' : '' ?> value="2">
                             <label class="form-check-label text-black" for="remis"> Aceptado </label>
                         </div>
 
-                        <div class="form-check d-flex align-items-center">
+                        <div class="form-check d-flex align-items-center m-2">
                             <input class="form-check-input" type="radio" name="estadoServicio" id="estadoServicio" <?php echo ($solicitud['idEstado'] == 3) ? 'checked' : '' ?> value="3">
                             <label class="form-check-label text-black" for="mandado"> Cancelado </label>
                         </div>                      

@@ -83,13 +83,16 @@
                         <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/adm/panel-adm.php">Panel de control</a></li>
                         <?php endif; ?>
                         <?php if($_SESSION['idRol'] == 1 ) : ?>
-                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor</a></li>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/elegirCatProv.php"><i class="fa-solid fa-handshake"></i> Ser proveedor </a></li>
                         <?php endif; ?>
-                        <?php if($_SESSION['idRol'] == 1 ||$_SESSION['idRol'] == 2 ) : ?>
+                        <?php if($_SESSION['idRol'] == 1 || $_SESSION['idRol'] == 2 ) : ?>
                           <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/listNotProv.php"><i class="fa-solid fa-bell"></i> Notificaciones <span class="badge boton-servicios"><?php echo (isset($notificaciones))?$notificaciones : 0; ?></span></a></li>
                         <?php endif; ?>
+                        <?php if($_SESSION['idRol'] == 2 ) : ?>
+                          <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/paginas/agenda.php"><i class="fa-regular fa-calendar"></i> Agenda <span class="badge boton-servicios"></span></a></li>
+                        <?php endif; ?>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item" href="<?php echo RUTARAIZ; ?>/procesos/cerrar-sesion.php"><i class="fa-solid fa-lock"></i> Cerrar Sesión </a></li>
                       </ul>
                     </li>
 
