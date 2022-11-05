@@ -149,11 +149,11 @@ require_once('../../includes/header.php');
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Imagen del seguro</b>:</label>
-                    <a href="../../img/vehiculos/<?php echo $datosServicio['img_seguro']; ?>" data-lightbox="img-seguro"><img class="img-fluid img-detalle-servicio" src="../../img/vehiculos/<?php echo $datosServicio['img_seguro']; ?>" alt=""></a> 
+                    <a href="../../img/vehiculos/<?php echo $datosServicio['img_seguro']; ?>" data-lightbox="img-seguro"><img class="img-fluid img-detalle-servicio" src="../../img/<?php echo $datosServicio['img_seguro']; ?>" alt=""></a> 
                 </div>
                 <div class="mb-2">
                     <label for="" class="text-dark"><b>Imagen de la VTV</b>:</label>
-                    <a href="../../img/vehiculos/<?php echo $datosServicio['img_vtv']; ?>" data-lightbox="img-vtv"><img class="img-fluid img-detalle-servicio" src="../../img/vehiculos/<?php echo $datosServicio['img_vtv']; ?>" alt=""></a> 
+                    <a href="../../img/vehiculos/<?php echo $datosServicio['img_vtv']; ?>" data-lightbox="img-vtv"><img class="img-fluid img-detalle-servicio" src="../../img/<?php echo $datosServicio['img_vtv']; ?>" alt=""></a> 
                 </div>
 
                 <div class="mb-2">

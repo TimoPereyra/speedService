@@ -13,7 +13,7 @@ require_once('../includes/header.php');
             <h2>Nosotros</h2>
                     <div class="row mt-4 align-items-center justify-content-center">
                         <div class="col-12 col-md-4 text-center">
-                            <img src="/img/nosotros_signo.jpg" alt="quienes_somos" class="imagen-nosotros">
+                            <img src="../img/nosotros_signo.jpg" alt="quienes_somos" class="imagen-nosotros">
                         </div>
                         <div class="col-12 col-md-8 fondo-fila-nosotros">
                             <h3 class="py-4 text-center">¿Quiénes somos?</h3>
@@ -26,13 +26,13 @@ require_once('../includes/header.php');
                             <p class="text-center"><i>Crear una plataforma flexible, adaptable a otros servicios, que oficie de nexo entre proveedores y potenciales clientes con el fin de satisfacer las necesidades de estos últimos de una manera cómoda y eficiente.</i></p>
                         </div>
                         <div class="col-12 col-md-4 text-center">
-                            <img src="/img/nosotros_objetivo.png" alt="objetivo" class="imagen-nosotros">
+                            <img src="../img/nosotros_objetivo.png" alt="objetivo" class="imagen-nosotros">
                         </div>
                     </div>
                         
                     <div class="row mt-4 align-items-center justify-content-center">
                         <div class="col-12 col-md-4 text-center">
-                            <img src="/img/nosotros_vision.jpg" alt="vision" class="imagen-nosotros">
+                            <img src="../img/nosotros_vision.jpg" alt="vision" class="imagen-nosotros">
                         </div>
                         <div class="col-12 col-md-8 fondo-fila-nosotros">
                             <h3 class="py-4 text-center">Nuestra visión</h3>
@@ -53,7 +53,7 @@ require_once('../includes/header.php');
                             </ul>
                         </div>
                         <div class="col-12 col-md-4 text-center">
-                            <img src="/img/nosotros_valores.jpg" alt="vision" class="imagen-nosotros">
+                            <img src="../img/nosotros_valores.jpg" alt="valores" class="imagen-nosotros">
                         </div>
                     </div>
                     <div class="row p-2 align-items-center justify-content-center nosotros-contacto">

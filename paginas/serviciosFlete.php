@@ -6,27 +6,24 @@ if(!isset($_SESSION['idRol'])){
 }
 $paginaTitulo = 'servicios-flete';
 require_once('../includes/config.php');
-
 require_once('../includes/conexion.php');
-
+$porPagina = 2; 
 $busqueda = isset ($_REQUEST['busqueda']) ? $_REQUEST['busqueda'] : '' ;
 $errorBusqueda = false;
+if(empty($_GET['pagina'])){
+    $pagina = 1; 
+    $desde = 0;
+}else{
+    $pagina = $_GET['pagina'];
+    $desde = ($pagina-1) * $porPagina; 
+}
 if(empty($busqueda)){
     $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios WHERE idCategoria = 1 AND idEstadoServicio = 2 ");
     $stmt->execute();
     $resultado = $stmt->fetch();
     $totalRegistros = $resultado['totalRegistro'];
-    $porPagina = 2; 
+    
    
-
-    if(empty($_GET['pagina'])){
-         $pagina = 1; 
-         $desde = 0;
-    }else{
-         $pagina = $_GET['pagina'];
-         $desde = ($pagina-1) * $porPagina; 
-    }
-
      
     $totalPaginas = ceil($totalRegistros / $porPagina);
  
@@ -39,8 +36,18 @@ if(empty($busqueda)){
     
     
 }else{
-    $stmt = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE nombreServicio LIKE :busqueda AND idCategoria = 1 AND idEstadoServicio=2  GROUP BY idServicio;");
+    $stmt = $conexion->prepare("SELECT COUNT(*) as totalRegistro FROM servicios 
+    WHERE idCategoria = 1 AND idEstadoServicio = 2 AND nombreServicio LIKE '%$busqueda%'");
+    $stmt->execute();
+    $resultado = $stmt->fetch();
+    $totalRegistros = $resultado['totalRegistro'];
+    $totalPaginas = ceil($totalRegistros / $porPagina);
+
+
+    $stmt = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE nombreServicio LIKE '%$busqueda%' AND idCategoria = 1 AND idEstadoServicio=2  GROUP BY idServicio;");
+     $servicios = $stmt->execute();
     $servicios = $stmt->fetchAll();
+   
     $errorBusqueda = empty($servicios) ? true : false ;
 
 }

@@ -5,11 +5,19 @@ if(!isset($_SESSION['idRol'])){
     header('Location:../index.php');
 }
 
-$totalPaginas = 0;
-$pagina = 1;
 $paginaTitulo = 'listado-solicitudes';
+$porPagina = 3; 
+
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
+
+if(empty($_GET['pagina'])){
+    $pagina = 1; 
+    $desde = 0;
+}else{
+    $pagina = $_GET['pagina'];
+    $desde = ($pagina-1) * $porPagina; 
+}
 
 // MODIFICAR CONSULTA PARA LISTAR NOTIFICACIONES DE UN USUARIO ESPECIFICO.
 // REALIZAR FUNCION PARA LISTAR SOLICITUDES PASANDO POR PARAMETRO EL ROL Y EN BASE A ESTO DESARROLLAR LA PAGINACIÓN.
@@ -21,19 +29,9 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
     $stmt->execute();
     $resultado = $stmt->fetch();
 
-    $totalRegistros = $resultado['totalRegistro'];
-    $porPagina = 3; 
-
-     if(empty($_GET['pagina'])){
-         $pagina = 1; 
-         $desde = 0;
-     }else{
-         $pagina = $_GET['pagina'];
-         $desde = ($pagina-1) * $porPagina; 
-     }
-
-    
+    $totalRegistros = $resultado['totalRegistro'];     
     $totalPaginas = ceil($totalRegistros / $porPagina);
+
    //No anda la pasada por parametros del limit
      $query = $conexion->prepare("SELECT * FROM solicitud_servicio 
      INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
@@ -43,7 +41,7 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==1){
     $query->execute();
     $solicitudes = $query->fetchAll();
     
-    
+
 
 }
 if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==2){
@@ -58,28 +56,22 @@ if(isset ($_SESSION['idRol']) && $_SESSION['idRol']==2){
      ;");
     $stmt->execute(array(':idProveedor' => $_SESSION['idUsuario']));
     $resultado = $stmt->fetch();
-
-    $totalRegistros = $resultado['totalRegistro'];
+    $totalRegistros = $resultado['totalRegistro'];  
+    $totalPaginas = ceil($totalRegistros / $porPagina);
 
     $query = $conexion->prepare("SELECT * FROM solicitud_servicio 
     INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
     INNER JOIN servicios ON solicitud_servicio.idServicio = servicios.idServicio
     INNER JOIN estado_servicio ON estado_servicio.idEstadoServicio = solicitud_servicio.idEstado
-    WHERE notificaciones.visto = 0 AND notificaciones.idProveedor = :idProveedor  ");
+    WHERE notificaciones.visto = 0 AND notificaciones.idProveedor = :idProveedor
+    ORDER BY fecha DESC");
     $query->execute(array(':idProveedor' => $_SESSION['idUsuario'] ));
     $solicitudes = $query->fetchAll();
    
 
 
 
-    /*
-    $stmt = $conexion->prepare("SELECT * FROM solicitud_servicio
-     INNER JOIN notificaciones ON solicitud_servicio.idSolicitud = notificaciones.idSolicitud
-     WHERE notificaciones.visto = 0
-     ORDER BY fecha ASC;");
-    $stmt->execute();
-    $solicitudes = $stmt->fetchAll();
-    */
+    
     }
 require_once('../includes/header.php');
 ?>

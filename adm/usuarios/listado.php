@@ -10,7 +10,7 @@ require_once('../../includes/config.php');
 require_once('../../includes/conexion.php');
 
 
-$stmt = $conexion->prepare("SELECT idUsuario,nombreCompleto,correo, fechaNacimiento
+$stmt = $conexion->prepare("SELECT idUsuario,nombreCompleto,correo,fechaNacimiento, idRol
 FROM usuarios 
 ");
 
@@ -45,12 +45,15 @@ require_once('../../includes/header.php');
                                     <td class="align-middle">'.$newDate.'</td>
                                     <td class="align-middle">'.$fila['nombreCompleto'].'</td>
                                     <td class="align-middle">'.$fila['correo'].'</td>
-                                    
-                                   <td class="align-middle">
-                                   <a href="../servicios/detalle.php?idUsuario='.$fila['idUsuario'].'" class="icono-modificar"><i class="fa-regular fa-eye"></i></a></td>
-                                </tr>';
-                                    
-                            
+                                    <td class="align-middle">';
+
+                                   if ($fila['idRol'] == 2)
+                                   {
+                                    echo '<a href="../servicios/detalle.php?idUsuario='.$fila['idUsuario'].'" class="icono-modificar"><i class="fa-regular fa-eye"></i></a></td>
+                                    </tr>';
+                                   }else{
+                                    echo '</tr>';
+                                   }
                         }                       
                     ?>
                 </tbody>
