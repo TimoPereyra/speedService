@@ -155,7 +155,6 @@ header .cta:hover{
     object-fit: cover;
 }
 
-
 .boton-servicios{
     border-radius: 20px;
     opacity: .9;
@@ -299,7 +298,7 @@ footer .copyright{
     background: url(../img/nueva_categoria.jpg) no-repeat center center;
     background-size: cover;
 }
-.alta-categorias h1, .modificar-solicitud h1, label{
+.alta-categorias h1, .listado-pedidos h1, .modificar-solicitud h1, label{
     color: #f2f2f2;
 }
 .alta-categorias .imagen-servicios-usuario{
@@ -603,4 +602,12 @@ footer .copyright{
 }
 .fc-daygrid-day-number:hover, .fc-col-header-cell-cushion:hover{
     color: #fa0050;
+}
+
+/* PÁGINA LISTNOTFINAL */
+.listado-pedidos{
+    padding-top: 5rem;
+    min-height: 70vh;
+    background: url(../img/listNotFinal.jpg) repeat center center;
+    background-size: cover;
 }

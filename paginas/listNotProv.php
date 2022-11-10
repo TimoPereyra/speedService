@@ -84,7 +84,7 @@ require_once('../includes/header.php');
         <div class="table-responsive bg-white">
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="table-info">
                         <th scope="col">Fecha de solicitud</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Descripción</th>
@@ -92,7 +92,6 @@ require_once('../includes/header.php');
                         <th scope="col">Estado</th>
                         <th scope="col">Acción</th>
                     </tr>
-                    
                 </thead>
                 <tbody>
                     <?php

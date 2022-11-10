@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['fecha'])){
 
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="table-danger">
                         <th scope="col">Fecha de solicitud</th>
                         <th scope="col">Hora</th>
                         <th scope="col">Descripción</th>
