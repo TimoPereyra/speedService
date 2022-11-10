@@ -42,7 +42,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $resultado = $stmt->execute(array(':fecha' => $fechaSolicitud, ':hora' => $horaSolicitud, ':descripcion' => $descripcion ,':precio' => $precio,':idEstado' => $estado));
 
         if($resultado){
-            $stmt = $conexion->prepare("UPDATE notificaciones SET descripcion=:descripcion, visto=1 WHERE notificaciones.idSolicitud=:idSolicitud");
+            $stmt = $conexion->prepare("UPDATE notificaciones SET descripcion=:descripcion, visto=2 WHERE notificaciones.idSolicitud=:idSolicitud");
             $stmt->execute(array(':descripcion'=>$descripcion,':idSolicitud' => $idSolicitud));
             header('Location:../index.php');
         }
