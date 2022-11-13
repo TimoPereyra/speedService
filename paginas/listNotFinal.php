@@ -93,7 +93,7 @@ require_once('../includes/header.php');
                                     }
                              
                                 echo ' <td class="align-middle text-center">
-                                <a href="factura.php?idSolicitud='.$fila['idSolicitud'].'" class="btn d-grid gap-2 col-9 mx-auto boton-servicios">Ver factura</a>
+                                <a href="factura.php?idSolicitud='.$fila['idSolicitud'].'" class="btn d-grid gap-2 col-11 mx-auto boton-servicios">Ver factura</a>
 
                             </td>
                                 </tr>'; 

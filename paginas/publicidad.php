@@ -6,7 +6,7 @@ function validarFecha($fechaAlta,$fechaBaja){
     $baja = new DateTime($fechaBaja);
     $ahora = new DateTime(date("Y-m-d"));
 
-    if($ahora > $alta || $ahora >$baja || $alta > $baja){
+    if($ahora > $alta || $ahora > $baja || $alta > $baja){
         return -1;
     }else{
         $plazo = $baja->diff($alta);
@@ -16,7 +16,7 @@ function validarFecha($fechaAlta,$fechaBaja){
 }
 
 
-$pagina = 'registro';
+$pagina = 'publicidad';
 require_once('../includes/config.php');
 require_once('../includes/conexion.php');
 require_once('../includes/header.php');
@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $notificacion = "Error: no puede dejar campos vacíos o las fechas ingresadas son incorrectas.";
     }
     else{
-        $archivo_destino = '../img/publicidad/'.$_FILES['imgPublicidad']['name'];
+        $archivo_destino = '../img/sponsors/'.$_FILES['imgPublicidad']['name'];
         move_uploaded_file($fotoTmpName,$archivo_destino);
 
         /* LISTAR USUARIO POR CORREO  */
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
 ?>
-<main class="registrar-servicio">
+<main class="publicidad">
 
     <seccion class="formulario py-1">
        
@@ -61,8 +61,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row align-items-center">
             
                 <div class="col-4">
-                    <h2 class="mb-1 text-center"><b>Publicitá en la nueva app de servicios de la ciudad de Chivilcoy</b></h2>
-                    <p class="text-center">Registrá tu publicidad, cumplí con nuestros requisitos y ganá dinero.</p>
+                    <h2 class="mb-1 text-center"><b>Publicitá aquí</b></h2>
+                    <p class="text-center">Completá los datos y expandí el alcance de tu negocio.</p>
                 </div>
 
                 <div class="col-8">
@@ -70,14 +70,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(isset($notificacion)){
                 echo '<p class="bg-danger text-white text-center">'.$notificacion.'</p>';
             }else {
-
+                
             }
 
             ?>
 
                 <form action="publicidad.php" method="POST" enctype="multipart/form-data" id="formRegistro" class="row">
 
-                    <div class="col-12 col-md-6 arregloForm">
+                    <div class="col-12 col-md-6 ">
                         <div class="mb-3">
                             <label for="nombrePublicidad">Nombre de la empresa:</label>
                             <input type="text" class="form-control" id="nombrePublicidad" name="nombrePublicidad" required>
@@ -115,7 +115,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     </div>
 
                                        
-                    <button type="submit" id="btnEnviar" class="btn d-grid gap-2 col-5 mx-auto boton-servicios">Enviar solicitud</button>
+                    <button type="submit" id="btnEnviar" class="btn d-grid gap-2 col-4 mx-auto boton-servicios">Enviar solicitud</button>
                     
 
                 </form>

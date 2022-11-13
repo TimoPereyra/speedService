@@ -38,7 +38,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'flete','Dejá tu carga en buenas manos.','FLETE_MOVIMIENTO.jpg',0),(2,'Mandados','Prueba','fondoin.jpg',0),(3,'remis','Si querés moverte, nosotros te llevamos.','fondo1.jpg',0),(4,'electricista','Prueba','fondo.jpg',1);
+INSERT INTO `categorias` VALUES (1,'flete','Dejá tu carga en buenas manos.','servicio_flete.jpg',0),(2,'Mandado','Nuestro destino es tu confianza.','servicio_mandado.jpg',0),(3,'remis','Si querés moverte, nosotros te llevamos.','servicio_remis.jpg',0);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,7 @@ CREATE TABLE `fotos_vehiculo` (
   PRIMARY KEY (`idFoto`),
   KEY `FK_vehiculo` (`idVehiculo`),
   CONSTRAINT `relacion_foto_vehiculo` FOREIGN KEY (`idVehiculo`) REFERENCES `vehiculos` (`idVehiculo`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `fotos_vehiculo` (
 
 LOCK TABLES `fotos_vehiculo` WRITE;
 /*!40000 ALTER TABLE `fotos_vehiculo` DISABLE KEYS */;
-INSERT INTO `fotos_vehiculo` VALUES (52,'alumbrado.png',23),(53,'animales.png',23);
+INSERT INTO `fotos_vehiculo` VALUES (52,'camioneta1.jpg',23),(53,'camioneta2.jpg',23),(54,'camioneta7.jpg',24),(55,'camioneta2.jpg',25),(56,'camioneta3.jpg',26),(57,'camioneta2.jpg',27);
 /*!40000 ALTER TABLE `fotos_vehiculo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `notificaciones` (
   CONSTRAINT `relacion_notificacion_proveedor` FOREIGN KEY (`idProveedor`) REFERENCES `usuarios` (`idUsuario`),
   CONSTRAINT `relacion_notificacion_solicitud` FOREIGN KEY (`idSolicitud`) REFERENCES `solicitud_servicio` (`idSolicitud`),
   CONSTRAINT `relacion_notificacion_usuario_notificado` FOREIGN KEY (`idUsuarioNotificado`) REFERENCES `usuarios` (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,8 +123,71 @@ CREATE TABLE `notificaciones` (
 
 LOCK TABLES `notificaciones` WRITE;
 /*!40000 ALTER TABLE `notificaciones` DISABLE KEYS */;
-INSERT INTO `notificaciones` VALUES (1,'asdasda',2,9,3,0);
+INSERT INTO `notificaciones` VALUES (1,'asdasda',2,9,3,2),(3,'Este sale andando',6,11,7,2),(4,'Calle 21 484',6,12,7,2);
 /*!40000 ALTER TABLE `notificaciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido`
+--
+
+DROP TABLE IF EXISTS `pedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedido` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario_emisor` int(11) NOT NULL,
+  `id_usuario_receptor` int(11) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `fecha` date NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_asd` (`id_usuario_emisor`),
+  KEY `fk_asd1` (`id_usuario_receptor`),
+  CONSTRAINT `relacion_pedido_proveedor` FOREIGN KEY (`id_usuario_receptor`) REFERENCES `servicios` (`idServicio`),
+  CONSTRAINT `relacion_pedido_usuario` FOREIGN KEY (`id_usuario_emisor`) REFERENCES `usuarios` (`idUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido`
+--
+
+LOCK TABLES `pedido` WRITE;
+/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `publicidad`
+--
+
+DROP TABLE IF EXISTS `publicidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publicidad` (
+  `idPublicidad` int(11) NOT NULL AUTO_INCREMENT,
+  `nombrePublicidad` varchar(255) NOT NULL,
+  `fotoPublicidad` varchar(255) NOT NULL,
+  `contacto` varchar(255) NOT NULL,
+  `direccionPublicidad` varchar(255) DEFAULT NULL,
+  `fechaAlta` date NOT NULL,
+  `fechaBaja` date NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  PRIMARY KEY (`idPublicidad`),
+  KEY `idUsuario` (`idUsuario`),
+  CONSTRAINT `publicidad_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `publicidad`
+--
+
+LOCK TABLES `publicidad` WRITE;
+/*!40000 ALTER TABLE `publicidad` DISABLE KEYS */;
+INSERT INTO `publicidad` VALUES (2,'MaleCaraPan','enTusNalgas','tuCulitoBbb','0800TusNalgas','1990-05-02','1990-05-02',6),(3,'la cara del pan','flete.jpg','elCulitoDeMale iLove','calle 21 484','2022-11-07','2022-12-08',6),(4,'TimoBoludo','detalle-servicio.jpg','elCulitoDeMale iLove','calle 21 484','2022-11-12','2022-11-21',6);
+/*!40000 ALTER TABLE `publicidad` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -180,7 +243,7 @@ CREATE TABLE `servicios` (
   CONSTRAINT `relacion_servicio_estado` FOREIGN KEY (`idEstadoServicio`) REFERENCES `estado_servicio` (`idEstadoServicio`),
   CONSTRAINT `relacion_servicio_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`),
   CONSTRAINT `relacion_servicio_vehiculo` FOREIGN KEY (`idVehiculo`) REFERENCES `vehiculos` (`idVehiculo`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -189,7 +252,7 @@ CREATE TABLE `servicios` (
 
 LOCK TABLES `servicios` WRITE;
 /*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
-INSERT INTO `servicios` VALUES (9,'Fletes Mario Perez','Fletes y Mudanzas.','09 a 20',1,23,'2022-09-26 12:38:46','500km',NULL,2,3,500.00);
+INSERT INTO `servicios` VALUES (9,'Fletes Mario Perez','Fletes y Mudanzas.','09 a 20',1,23,'2022-09-26 12:38:46','500km',NULL,2,3,500.00),(10,'fletes firulete','Fast fast','8 a 16',2,24,'2022-10-17 20:51:21','50',NULL,2,6,0.00),(11,'Fletes firulay','asd','8 a 16',2,25,'2022-10-17 20:53:08','50',NULL,2,6,0.00),(12,'fletes firulete1','asadasda','8 a 17',1,26,'2022-10-17 20:54:27','50',NULL,2,6,0.00),(13,'Fletes firulay1','Llego de tok','8 a 16',1,27,'2022-10-18 20:25:00','50',NULL,2,7,0.00);
 /*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +279,7 @@ CREATE TABLE `solicitud_servicio` (
   CONSTRAINT `relacion_solicitud_cliente` FOREIGN KEY (`idCliente`) REFERENCES `usuarios` (`idUsuario`),
   CONSTRAINT `relacion_solicitud_estado` FOREIGN KEY (`idEstado`) REFERENCES `estado_servicio` (`idEstadoServicio`),
   CONSTRAINT `relacion_solicitud_servicio` FOREIGN KEY (`idServicio`) REFERENCES `servicios` (`idServicio`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +288,7 @@ CREATE TABLE `solicitud_servicio` (
 
 LOCK TABLES `solicitud_servicio` WRITE;
 /*!40000 ALTER TABLE `solicitud_servicio` DISABLE KEYS */;
-INSERT INTO `solicitud_servicio` VALUES (1,'2022-10-20','16 horas.','Flete para Av. San Martin 334 a Repulica 1029',500.00,3,1,9),(2,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(3,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(4,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(5,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(6,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(7,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(8,'2022-10-15','asddas','asdasda',500.00,2,1,9),(9,'2022-10-15','asddas','asdasda',500.00,2,1,9);
+INSERT INTO `solicitud_servicio` VALUES (1,'2022-10-20','16 horas.','Flete para Av. San Martin 334 a Repulica 1029',500.00,3,1,9),(2,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,2,9),(3,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(4,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(5,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(6,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,2,9),(7,'2022-12-20','15:30 hs.','Flete de Av. La Plata 123 a Repulica 3309',500.00,2,1,9),(8,'2022-10-15','asddas','asdasda',500.00,2,2,9),(9,'2022-10-15','asddas','asdasda',500.00,2,2,9),(10,'2012-12-12','16:30','MaleCaraDePan',0.00,6,1,12),(11,'2020-12-12','16:30','Este sale andando',1500.00,6,2,13),(12,'2022-11-09','22:30','Calle 21 484',850.00,6,2,13);
 /*!40000 ALTER TABLE `solicitud_servicio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +339,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`idUsuario`),
   KEY `FK_rol` (`idRol`),
   CONSTRAINT `relacion_usuario_rol` FOREIGN KEY (`idRol`) REFERENCES `rol` (`idRol`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,7 +348,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'flan.jpg','Manuel Diaz','manu@gmail.com','','4564564654','32659879','asdasdasd 123','1990-05-02','2022-09-01 20:19:36',1,''),(2,'20220613_190301.jpg','Florencia Perez','prueba@gmail.com','$2y$10$0edUJAL5N4074mHvM..YJuNhRwnWgMbvVo1OJlYrt7siCZZYhihiq','4564-654546','35989656','Av. san martin 334','2006-09-04','2022-09-05 11:22:17',1,'TRUE'),(3,'team-4.jpg','Federico Paez','fede@gmail.com','$2y$10$9x/7rZyYPAvQt0G7UVm51.XtkkpIvergqhlsNrOMsOnYoCcKK4Vtq','2364-569865','32656989','Av. Libertador 335','2006-02-02','2022-09-05 12:28:02',1,'TRUE'),(4,'team-4.jpg','Fran Perez','fran@gmail.com','$2y$10$nVxe6Px/FDVwNBd/ddiNZufV9bIgwxWS1TpAkOaINQCvt2YZR69x2','2365-659865','32656989','Av. Suipacha 32','2000-02-02','2022-09-05 12:32:30',3,'TRUE');
+INSERT INTO `usuarios` VALUES (1,'flan.jpg','Manuel Diaz','manu@gmail.com','','4564564654','32659879','asdasdasd 123','1990-05-02','2022-09-01 20:19:36',3,''),(2,'usuario1.jpg','Florencia Perez','prueba@gmail.com','$2y$10$0edUJAL5N4074mHvM..YJuNhRwnWgMbvVo1OJlYrt7siCZZYhihiq','4564-654546','35989656','Av. san martin 334','2006-09-04','2022-09-05 11:22:17',1,'TRUE'),(3,'usuario2.jpg','Federico Paez','fede@gmail.com','$2y$10$9x/7rZyYPAvQt0G7UVm51.XtkkpIvergqhlsNrOMsOnYoCcKK4Vtq','2364-569865','32656989','Av. Libertador 335','2006-02-02','2022-09-05 12:28:02',1,'TRUE'),(4,'team-4.jpg','Fran Perez','fran@gmail.com','$2y$10$nVxe6Px/FDVwNBd/ddiNZufV9bIgwxWS1TpAkOaINQCvt2YZR69x2','2365-659865','32656989','Av. Suipacha 32','2000-02-02','2022-09-05 12:32:30',3,'TRUE'),(6,'usuario1.jpg','timote','timo_futbol@hotmail.com','$2y$10$YoeD8xhJryc3lxI9ozRuGOAxjxUcpRD83Slz7tiT/h7pmRrY77OLm','2346-454545','12345678','1221','1996-12-12','2022-10-17 20:00:21',1,'TRUE'),(7,'usuario2.jpg','Eugenio','timopereyra@gmail.com','$2y$10$jUDcgOFzHCuXS0n0oX1ihuw6JI3PpypNFzBukQRwmRD/rx9Ct7e.O','2346-454545','12345678','484','1990-12-12','2022-10-18 20:13:03',2,'TRUE');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,7 +373,7 @@ CREATE TABLE `vehiculos` (
   KEY `FK_usuario` (`idUsuario`),
   CONSTRAINT `relacion_vehiculo_tipo` FOREIGN KEY (`idTipo`) REFERENCES `tipo_vehiculo` (`idTipo`),
   CONSTRAINT `relacion_vehiculo_usuario` FOREIGN KEY (`idUsuario`) REFERENCES `usuarios` (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +382,7 @@ CREATE TABLE `vehiculos` (
 
 LOCK TABLES `vehiculos` WRITE;
 /*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
-INSERT INTO `vehiculos` VALUES (23,'730asd','alumbrado.png','alumbrado.png','8000 kg.','Camioneta 0 km.',5,3);
+INSERT INTO `vehiculos` VALUES (23,'730asd','SEGURO1.jpg','VTV1.jpg','8000 kg.','Camioneta 0 km.',5,3),(24,'abc123','SEGURO1.jpg','VTV1.jpg','1212','asd',5,6),(25,'abc321','SEGURO2.png','VTV2.jpg','1212','asdasda',5,6),(26,'abc678','SEGURO3.jpg','VTV3.png','21212','asdas',5,6),(27,'zxy987','SEGURO2.png','VTV2.jpg','1000','De a puñado',5,7);
 /*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -332,4 +395,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-13 20:54:45
+-- Dump completed on 2022-11-10 19:13:41

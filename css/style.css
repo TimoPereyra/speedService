@@ -65,11 +65,10 @@ principal: #fa0050
 .nav-link:hover{
     color: #fa0050!important;
 }
-.active {
+.active{
     color: #fa0050!important;
     font-weight: bold;
 }
-
 .img-logo{
     height: 3rem;
     width: auto;
@@ -87,6 +86,19 @@ header .cta{
 header .cta:hover{
     opacity: .7;
     color: #fff!important;
+}
+.boton-ingresar{
+    border-radius: 25px;
+    background-color: #bbbbbb;
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem 0.4rem;
+    display: block;
+    font-size: 14px;  
+}
+.boton-ingresar:hover{
+    background-color: black!important;
+    color: white;
 }
 
 /* SECCION BIENVENIDA */
@@ -138,8 +150,13 @@ header .cta:hover{
     color: black;
 }
 
+/* SECCION PUBLICIDAD */
+.seccion-publicidad{
+    background-color: #f3f3f3;
+}
+
 /* SECCION SERVICIOS */
-.seccion-servicios h2{
+.seccion-servicios h2, .seccion-publicidad h2{
     color: #fa0050;
     font-size: 2rem;
 }
@@ -610,4 +627,84 @@ footer .copyright{
     min-height: 70vh;
     background: url(../img/listNotFinal.jpg) repeat center center;
     background-size: cover;
+}
+
+/* PAGINA PUBLICIDAD */
+.publicidad{
+    padding-top: 4.5rem!important;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../img/avisopublicitario.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.publicidad .formulario .row:first-child{
+    background-image: radial-gradient(#070707a6 40%, #0707077c 70%);
+    color: #f2f2f2;
+    padding: 1.5rem;
+    border-radius: 25px;
+}
+.publicidad .formulario p{
+    text-align: justify;
+}
+.publicidad h2{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* CAROUSEL PUBLICIDAD */
+.sliderItem{
+    width: 100%;
+    display: flex;
+    position: relative;   
+}
+.sliderItem img{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    box-shadow: 10px 0px 10px 0px rgba(128, 128, 128, 0.767);
+    transition: all 300ms;
+}
+.sliderItem img:hover{
+    box-shadow: 0px 0px 20px 0px #000000;
+    transition: all 300ms; 
+}
+.info p{
+    font-size: 12px;
+    color: black;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    background-color: #f2f2f2;
+}
+.info p:hover{
+    font-size: 18px;
+    background-color: #dbcbc18a;
+    color: rgba(20, 18, 18, 0.836);
+    border-radius: 0px 0px 20px 20px;
+}
+
+.sliderItem{
+    animation: desplazar 10s infinite linear;
+}
+
+@keyframes desplazar {
+    0%{
+        margin-left: 0%;
+    }
+    100%{
+        margin-left: 100%;
+    }
+    to{
+        margin-left: -100%;
+    }
+    from{
+        margin-left: 0%;
+    }
+  
+}
+.sliderItem:hover{
+    animation-play-state: paused;
+    cursor: pointer;
 }

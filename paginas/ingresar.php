@@ -61,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row">
 
                 <div class="col-md-5">
-                    <h2 class="mb-1 text-center"><b>Ingresá tus datos y navegá en la app</b></h2><br>
+                    <h2 class="mb-1 text-center"><b>Ingresá tus datos y navegá en la aplicación</b></h2><br>
                     <p class="text-center">¿Estás listo para una nueva experiencia?<br>
                         <i>Speedservice</i> te ofrece publicar o solicitar un remis, mandado o flete desde la web.</p>
                 </div>

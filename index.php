@@ -11,6 +11,11 @@ $stmt->execute();
 
 $categorias = $stmt->fetchAll();
 
+/* LISTAR PUBLICIDAD */ 
+$stmt = $conexion->prepare("SELECT * FROM publicidad WHERE 1");
+$stmt->execute();
+$publicidad = $stmt->fetchAll();
+
 require_once('includes/header.php');
 
 ?>
@@ -40,6 +45,23 @@ require_once('includes/header.php');
       </div>
     </div>
   </section>
+
+<section class="seccion-publicidad py-4">
+  <div class=contenedor>
+    <h2 class="text-center mb-4">Publicitá aquí</h2>
+      <div class="sliderItem info">
+        <?php foreach ($publicidad as $fila) { ?>
+          <div>
+            <img class="imgMovimiento" src="img/sponsors/<?php echo $fila['fotoPublicidad'];?>">
+            <div>
+              <p><b><?php echo $fila['nombrePublicidad']; ?></b><br>
+			        <b>Contacto: </b><?php echo $fila['contacto']; ?></p>
+            </div>
+          </div>  
+        <?php } ?> 
+      </div>
+  </div>
+</section>
 
   <section class="seccion-servicios py-4">
     <div class="container">

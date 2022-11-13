@@ -108,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <div class="row align-items-center">
             
                 <div class="col-4">
-                    <h2 class="mb-1 text-center"><b>Formá parte de la nueva app de servicios de la ciudad de Chivilcoy</b></h2>
+                    <h2 class="mb-1 text-center"><b>Formá parte de la nueva aplicación de servicios de la ciudad de Chivilcoy</b></h2>
                     <p class="text-center">Registrá tu servicio, cumplí con nuestros requisitos y ganá dinero. Aplica únicamente para aquellos que completen el proceso de registro exitosamente.</p>
                 </div>
 

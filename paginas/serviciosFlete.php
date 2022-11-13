@@ -28,7 +28,7 @@ if(empty($busqueda)){
     $totalPaginas = ceil($totalRegistros / $porPagina);
  
    //No anda la pasada por parametros del limit
-     $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE idCategoria = 1 AND idEstadoServicio=2 GROUP BY idServicio LIMIT $desde, $porPagina;");
+    $query = $conexion->prepare("SELECT DISTINCT nombreServicio, imgUsuario,urlFoto,idServicio FROM servicios INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN fotos_vehiculo ON fotos_vehiculo.idVehiculo = vehiculos.idVehiculo WHERE idCategoria = 1 AND idEstadoServicio=2 GROUP BY idServicio LIMIT $desde, $porPagina;");
      
     $query->execute();
     $servicios = $query->fetchAll();

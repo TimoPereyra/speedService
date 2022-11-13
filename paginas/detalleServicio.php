@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['idServicio'])){
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idServicio'])){
     $idServicio = $_GET['idServicio'];
-    $stmt = $conexion->prepare("SELECT idServicio, servicios.precioServicio, servicios.idUsuario, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, imgUsuario, patente, capacidad, tipo, nombreCompleto, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
+    $stmt = $conexion->prepare("SELECT idServicio, servicios.idUsuario, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, imgUsuario, patente, capacidad, tipo, nombreCompleto, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
     $stmt->execute(array(':idServicio' => $idServicio));
     $datosServicio = $stmt->fetch();
 
@@ -17,7 +17,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idServicio'])){
     $categoria = $datosServicio['idCategoria']; 
     $descripcionServicio = $datosServicio['descripcionServicio'];
     $tipoVehiculoServicio = $datosServicio['tipo'];
-    $precioServicio = $datosServicio['precioServicio'];
     $idProveedor = $datosServicio['idUsuario'];
 
     /* ACCEDER A LAS IMÁGENES DEL VEHÍCULO */
@@ -33,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $descripcion = $_POST['descripcion'];
     $idCliente = $_SESSION['idUsuario'];
     $idServicio = $_POST['idServicio']; 
-    $precioServicio = $_POST['precioServicio'];
+    
 
 
 
@@ -43,9 +42,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $notificacion = 'Error: no puede haber campos vacíos.';
     }else{
 
-        $stmt = $conexion->prepare("INSERT INTO solicitud_servicio(fecha, hora, descripcion, precioServicio, idCliente, idEstado, idServicio) VALUES (:fecha, :hora, :descripcion, :precioServicio, :idCliente, 1, :idServicio)");
+        $stmt = $conexion->prepare("INSERT INTO solicitud_servicio(fecha, hora, descripcion, idCliente, idEstado, idServicio) VALUES (:fecha, :hora, :descripcion, :idCliente, 1, :idServicio)");
 
-        $resultado = $stmt->execute(array(':fecha' => $fecha, ':hora' => $hora, ':descripcion' => $descripcion, ':precioServicio' => $precioServicio, ':idCliente' => $idCliente, ':idServicio' => $idServicio));
+        $resultado = $stmt->execute(array(':fecha' => $fecha, ':hora' => $hora, ':descripcion' => $descripcion, ':idCliente' => $idCliente, ':idServicio' => $idServicio));
 
         if($resultado){
 
@@ -120,8 +119,6 @@ require_once('../includes/header.php');
                 
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Nombre: </b><i><?php echo $datosServicio['nombreServicio']; ?></i></p>
 
-                <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Precio: </b>$<i><?php echo $datosServicio['precioServicio']; ?></i></p>
-
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Categoría: </b><?php echo $datosServicio['categoria'];?></p>
                 
                 <p class="text-dark"><i class="fa-solid fa-check icono-viñeta"></i><b> Activo desde: </b><?php echo $fechaSolicitud = date("d-m-Y", strtotime($datosServicio['fechaAltaServicio'])); ?></p>
@@ -138,7 +135,6 @@ require_once('../includes/header.php');
 
     <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
     <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
-    <input type="hidden" name="precioServicio" value="<?php echo (isset($precioServicio)) ? $precioServicio : '' ?>">
     <input type="hidden" name="idProveedor" value="<?php echo (isset($idProveedor)) ? $idProveedor : '' ?>">
 
     <div class="mt-3 col-12 col-md-6 fondo-formulario"> 

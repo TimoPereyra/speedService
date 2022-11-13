@@ -112,6 +112,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     ';
                 
         }?>
+
     <button type="submit" onclick="validar()">Enviar</button>
         </form>
     </div>
