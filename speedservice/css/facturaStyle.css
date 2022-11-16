@@ -8,60 +8,28 @@ body {
     margin: 0
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-main,
-menu,
-nav,
-section,
-summary {
+details, footer, header, section {
     display: block
 }
 
-audio,
-canvas,
-progress,
-video {
-    display: inline-block;
-    vertical-align: baseline
+.boton-servicios{
+    border-radius: 20px;
+    opacity: .9;
+    background-color: #fa0050;
+    color: white;
 }
-
-audio:not([controls]) {
-    display: none;
-    height: 0
-}
-
-[hidden],
-template {
-    display: none
+.boton-servicios:hover{
+    color: #f2f2f2;
+    opacity: .7;
+    color: #000;
 }
 
 a {
     background-color: transparent
 }
 
-a:active,
-a:hover {
+a:active, a:hover {
     outline: 0
-}
-
-abbr[title] {
-    border-bottom: 1px dotted
-}
-
-b,
-strong {
-    font-weight: bold
-}
-
-dfn {
-    font-style: italic
 }
 
 h1 {
@@ -73,112 +41,26 @@ small {
     font-size: 80%
 }
 
-sub,
-sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline
-}
-
-sup {
-    top: -0.5em
-}
-
-sub {
-    bottom: -0.25em
-}
-
 img {
     border: 0;
     max-height: 90px;
 }
 
-svg:not(:root) {
-    overflow: hidden
-}
-
-figure {
-    margin: 1em 40px
-}
-
-hr {
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0
-}
-
-pre {
-    overflow: auto
-}
-
-code,
-kbd,
-pre,
-samp {
-    font-family: monospace, monospace;
-    font-size: 1em
-}
-
-button,
-select {
-    color: inherit;
-    font: inherit;
-    margin: 0
-}
-
-button {
-    overflow: visible
-}
-
-button,
-select {
-    text-transform: none
-}
-
-button,
-html input[type="button"],
-input[type="reset"],
-
-
-button[disabled],
-html input[disabled] {
-    cursor: default
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-    border: 0;
-    padding: 0
-}
-
-input {
-    line-height: normal
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 0
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    height: auto
-}
-
 table {
     border-collapse: collapse;
-    border-spacing: 0
+    border-spacing: 0;
 }
 
 td,th {
     padding: 0
 }
 
+.invoice_detail th {
+    background-color: rgba(128, 128, 128, 0.445);
+}
+
 html {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.5;
     color: #000;
     background: #ddd;
@@ -188,11 +70,11 @@ html {
 
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 6rem auto 0;
+    margin: 6rem auto 3rem;
     max-width: 800px;
     background: #f2f2f2;
     border: 1px solid black;
-    padding: 2rem
+    padding: 2rem;
 }
 
 .container {
@@ -210,8 +92,6 @@ body {
     box-sizing: inherit
 }
 
-
-.group:after,
 .row:after,
 .invoicelist-footer:after {
     content: "";
@@ -235,11 +115,7 @@ p {
     font-size: 0
 }
 
-.col,
-.logoholder,
-.me,
-.info,
-.bank,
+.col, .logoholder, .info,
 [class*="col-"] {
     vertical-align: top;
     display: inline-table;
@@ -282,8 +158,8 @@ p {
     left: 0;
     right: 0;
     z-index: 100;
-    background: black;
-    color: white;
+    background-image: linear-gradient(to right, #434343 0%, black 100%);
+    color: #fff;
     line-height: 4rem;
     height: 4rem
 }
@@ -295,14 +171,10 @@ p {
     margin-right: 2rem
 }
 
-.control-bar label {
-    margin-right: 1rem
-}
-
 .control-bar a {
     margin: 0;
     padding: .5em 1em;
-    background: rgba(255, 255, 255, 0.8)
+   
 }
 
 .control-bar a:hover {
@@ -340,7 +212,7 @@ p {
 header {
     margin: 1rem 0 0;
     padding: 0 0 2rem 0;
-    border-bottom: 3pt solid black
+    border-bottom: 3pt solid grey
 }
 
 header p {
@@ -351,39 +223,12 @@ header a {
     color: #000
 }
 
-.logo {
-    margin: 0 auto;
-    width: auto;
-    height: auto;
-    border: none;
-    fill: #009688
-}
-
-.logoholder {
-    width: 14%
-}
-
-.me {
-    width: 30%
-}
-
 .info {
     width: 30%
 }
 
-.bank {
-    width: 26%
-}
-
 .section {
     margin: 2rem 0 0
-}
-
-.smallme {
-    display: inline-block;
-    text-transform: uppercase;
-    margin: 0 0 2rem 0;
-    font-size: .9rem
 }
 
 .client {
@@ -393,7 +238,7 @@ header a {
 h1 {
     margin: 0;
     padding: 0;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #ff0050
 }
 
@@ -412,13 +257,9 @@ h1 {
 	border: solid 1px #ff0050;
 	padding:10px;
 	height:25px;
-	text-align:center
+	text-align:center;
 }
 
-.rate:before,
-.price:before,
-.sum:before,
-.tax:before,
 #total_price:before {
     content: '$';
 }
@@ -436,8 +277,7 @@ h1 {
     border-bottom: 1pt solid #666
 }
 
-.invoicelist-body td,
-.invoicelist-body th {
+.invoicelist-body td, .invoicelist-body th {
     position: relative;
     padding: 1rem
 }
@@ -450,16 +290,6 @@ h1 {
     display: block
 }
 
-.invoicelist-body input {
-    display: inline;
-    margin: 0;
-    border: none;
-    width: 80%;
-    min-width: 0;
-    background: transparent;
-    text-align: left
-}
-
 .invoicelist-body .control {
     display: inline-block;
     color: white;
@@ -470,28 +300,7 @@ h1 {
     cursor: pointer
 }
 
-.invoicelist-body .control:hover {
-    background: #f36464
-}
-
-.invoicelist-body .newRow {
-    margin: .5rem 0;
-    float: left
-}
-
-.invoicelist-body .removeRow {
-    display: none;
-    position: absolute;
-    top: .1rem;
-    bottom: .1rem;
-    left: -1.3rem;
-    font-size: .7rem;
-    border-radius: 3px 0 0 3px;
-    padding: .5rem
-}
-
 .invoicelist-footer {
-    margin: 1rem;
     height: 150px;
 }
 
@@ -513,20 +322,6 @@ h1 {
 .invoicelist-footer table #total_price {
     font-size: 1.5rem;
     color: #ff0050
-}
-
-.note {
-    margin: 1rem
-}
-
-.hidenote .note {
-    display: none
-}
-
-.note h2 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold
 }
 
 footer {
@@ -563,8 +358,6 @@ footer p {
     }
 }
 
-
-/* EDICION PROPIA */
 .encabezadoFactura{
     display: flex;
     justify-content: space-between;

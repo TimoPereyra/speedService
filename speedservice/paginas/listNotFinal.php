@@ -5,7 +5,7 @@ if((!isset($_SESSION['idRol'])) && $_SESSION['idRol'] != 1) {
     header('Location:../index.php');
 }
 
-$paginaTitulo = 'listado-solicitudes';
+$paginaTitulo = 'listado-pedidos';
 $porPagina = 3; 
 
 require_once('../includes/config.php');
@@ -55,15 +55,14 @@ if($_SESSION['idRol']==1){
 require_once('../includes/header.php');
 ?>
 
-
-<section class="alta-categorias">
+<section class="listado-pedidos">
     <div class="container">
-        <h1 class="text-center py-5">Listado de Pedidos</h1>
+        <h1 class="text-center py-5">Mis Pedidos</h1>
 
         <div class="table-responsive bg-white">
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="table-secondary">
                         <th scope="col" class="text-center">Fecha de solicitud</th>
                         <th scope="col" class="text-center">Hora</th>
                         <th scope="col" class="text-center">Descripción</th>
@@ -94,7 +93,7 @@ require_once('../includes/header.php');
                                     }
                              
                                 echo ' <td class="align-middle text-center">
-                                <a href="factura.php?idSolicitud='.$fila['idSolicitud'].'" class="btn d-grid gap-2 col-7 mx-auto boton-servicios">Ver factura</a>
+                                <a href="factura.php?idSolicitud='.$fila['idSolicitud'].'" class="btn d-grid gap-2 col-9 mx-auto boton-servicios">Ver factura</a>
 
                             </td>
                                 </tr>'; 

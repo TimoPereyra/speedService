@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && !isset($_GET['idServicio'])){
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idServicio'])){
     $idServicio = $_GET['idServicio'];
-    $stmt = $conexion->prepare("SELECT idServicio, servicios.precioServicio, servicios.idUsuario, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, imgUsuario, patente, capacidad, tipo, nombreCompleto, servicios.idVehiculo, categorias.idCategoria FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio = :idServicio");
+    $stmt = $conexion->prepare("SELECT idServicio, servicios.precioServicio, servicios.idUsuario, nombreServicio, descripcionServicio, categoria, fechaAltaServicio, alcance, imgUsuario, patente, capacidad, tipo, nombreCompleto, servicios.idVehiculo, categorias.idCategoria,servicios.likes FROM servicios INNER JOIN categorias ON categorias.idCategoria = servicios.idCategoria INNER JOIN vehiculos ON vehiculos.idVehiculo = servicios.idVehiculo INNER JOIN usuarios ON usuarios.idUsuario = servicios.idUsuario INNER JOIN tipo_vehiculo ON tipo_vehiculo.idTipo = vehiculos.idTipo WHERE idServicio =:idServicio");
     $stmt->execute(array(':idServicio' => $idServicio));
     $datosServicio = $stmt->fetch();
 
@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['idServicio'])){
     $tipoVehiculoServicio = $datosServicio['tipo'];
     $precioServicio = $datosServicio['precioServicio'];
     $idProveedor = $datosServicio['idUsuario'];
-
+    
     /* ACCEDER A LAS IMÁGENES DEL VEHÍCULO */
     $stmt = $conexion->prepare('SELECT * FROM fotos_vehiculo WHERE idVehiculo = :idVehiculo');
     $stmt->execute(array(':idVehiculo' => $datosServicio['idVehiculo']));
@@ -78,14 +78,19 @@ require_once('../includes/header.php');
             }
 
             ?>
-
+       
+          
         <form action="detalleServicio.php" method="POST" class="bg-white p-4 form-detalle">
         <div class="row">
             <div class="col-4 col-conductor">
                 <h4 class="py-1 text-black"><i class="fa-solid fa-user icono-modificar"></i> Conductor </h4>
             <div class="col-4 col-md-12 text-center">
                 <img src="../img/usuarios/<?php echo $datosServicio['imgUsuario'];?>" class="card-img-top img-fluid imagen-servicios-usuario mb-2 text-center" alt="imgUsuario"> 
-                <h5 class="text-dark text-center"><?php echo $datosServicio['nombreCompleto']; ?></h5>                             
+                <h5 class="text-dark text-center"><?php echo $datosServicio['nombreCompleto']; ?></h5> 
+            <button type="button" class="like_btn">
+                <span id="icon"><i class="far fa-thumbs-up"></i></span>
+                <span id="count"><?php echo $datosServicio['likes']; ?></span> Like
+            </button>                            
             </div>
             </div>
             
@@ -136,8 +141,8 @@ require_once('../includes/header.php');
            
     </div>
 
-    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
-    <input type="hidden" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
+  
+    <input type="hidden" id="idServicio" name="idServicio" value="<?php echo (isset($idServicio)) ? $idServicio : '' ?>">
     <input type="hidden" name="precioServicio" value="<?php echo (isset($precioServicio)) ? $precioServicio : '' ?>">
     <input type="hidden" name="idProveedor" value="<?php echo (isset($idProveedor)) ? $idProveedor : '' ?>">
 
@@ -156,8 +161,8 @@ require_once('../includes/header.php');
             <button type="submit" class="btn boton-servicios d-grid gap-2 col-4 mx-auto"> Solicitar servicio </button>
     </div> 
 </section>
-
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="../js/scriptBtn.js"></script>
 
 <?php
   require_once('../includes/footer.php');

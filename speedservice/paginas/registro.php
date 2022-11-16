@@ -200,10 +200,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     let exitoServidor = "<?php echo (isset($notificacionExito)) ? $notificacionExito : '' ;?>";
     
     if(errorServidor){
-        alert(errorServidor);
+
+        console.log(errorServidor);
     }else if(exitoServidor)
     {
-        alert(exitoServidor); 
+       console.log(exitoServidor) ;
         window.location.href = 'ingresar.php';
         
     }
